@@ -55,7 +55,7 @@
                     android:autofillHints="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <co.tiagoaguiar.course.instagram.login.view.LoadingButton
+            <com.example.vought.login.LoadingButton
                 android:id="@+id/login_btn_enter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

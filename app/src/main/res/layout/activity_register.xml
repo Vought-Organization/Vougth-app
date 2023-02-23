@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".register.view.RegisterActivity">
+    tools:context=".register.RegisterActivity">
 
     <fragment
         android:id="@+id/register_fragment"
         android:layout_width="match_parent"
-        android:name="co.tiagoaguiar.course.instagram.register.view.RegisterEmailFragment"
-        tools:layout="@layout/fragment_register_email"
+        android:name="com.example.vought.register.RegisterNamePasswordFragment"
+        tools:layout="@layout/fragment_register_name_password"
         android:layout_height="match_parent" />
 
 </LinearLayout>
