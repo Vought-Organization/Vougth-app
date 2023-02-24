@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Instagram.FormContainer">
+    <style name="Theme.Vought.FormContainer">
         <item name="android:layout_marginStart">36dp</item>
         <item name="android:layout_marginEnd">36dp</item>
     </style>
 
-    <style name="Theme.Instagram.FormEditText">
+    <style name="Theme.Vought.FormEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
@@ -14,7 +14,7 @@
         <item name="android:background">@drawable/edit_text_background</item>
     </style>
 
-    <style name="Theme.Instagram.FormEditTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="Theme.Vought.FormEditTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">36dp</item>
@@ -22,7 +22,7 @@
         <item name="android:layout_marginBottom">20dp</item>
     </style>
 
-    <style name="Theme.Instagram.Button" parent="Widget.MaterialComponents.Button">
+    <style name="Theme.Vought.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/white</item>
@@ -36,13 +36,13 @@
         <item name="backgroundTint">@color/button_background</item>
     </style>
 
-    <style name="Theme.Instagram.TextViewBase" parent="Theme.Instagram.FormContainer">
+    <style name="Theme.Vought.TextViewBase" parent="Theme.Vought.FormContainer">
         <item name="android:textColor">@color/gray_text</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="Theme.Instagram.TextViewBase.Form">
+    <style name="Theme.Vought.TextViewBase.Form">
          <item name="android:textAlignment">center</item>
         <item name="android:layout_marginBottom">24dp</item>
     </style>

@@ -23,19 +23,18 @@
             <ImageView
                 android:id="@+id/login_img_logo"
                 android:layout_marginBottom="48dp"
-                android:src="@drawable/instagram_logo_black"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:contentDescription="@null" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_edit_email_input"
-                style="@style/Theme.Instagram.FormEditTextInput"
+                style="@style/Theme.Vought.FormEditTextInput"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_edit_email"
-                    style="@style/Theme.Instagram.FormEditText"
+                    style="@style/Theme.Vought.FormEditText"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:autofillHints="@null" />
@@ -44,12 +43,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_edit_password_input"
-                style="@style/Theme.Instagram.FormEditTextInput"
+                style="@style/Theme.Vought.FormEditTextInput"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_edit_password"
-                    style="@style/Theme.Instagram.FormEditText"
+                    style="@style/Theme.Vought.FormEditText"
                     android:hint="@string/password"
                     android:inputType="textPassword"
                     android:autofillHints="@null" />
@@ -62,7 +61,7 @@
                 app:text="@string/enter" />
 
             <FrameLayout
-                style="@style/Theme.Instagram.FormContainer"
+                style="@style/Theme.Vought.FormContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -73,7 +72,7 @@
                     android:layout_height="1dp" />
 
                 <TextView
-                    style="@style/Theme.Instagram.TextViewBase"
+                    style="@style/Theme.Vought.TextViewBase"
                     android:text="@string/or"
                     android:background="@color/white"
                     android:layout_gravity="center"
@@ -93,7 +92,7 @@
 
     <TextView
         android:id="@+id/login_txt_register"
-        style="@style/Theme.Instagram.TextViewBase"
+        style="@style/Theme.Vought.TextViewBase"
         android:text="@string/does_not_have_account"
         android:layout_width="match_parent"
         android:textAlignment="center"
