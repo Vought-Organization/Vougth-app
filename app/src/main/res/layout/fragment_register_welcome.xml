@@ -23,7 +23,7 @@
 
             <TextView
                 style="@style/Theme.Vought.TextViewBase.Form"
-                android:text="@string/welcome_to_instagram" />
+                android:text="@string/welcome_to_vought" />
 
             <com.example.vought.login.LoadingButton
                 android:id="@+id/register_btn_next"
