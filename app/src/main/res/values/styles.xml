@@ -11,7 +11,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
         <item name="android:layout_marginBottom">4dp</item>
-        <item name="android:background">@drawable/edit_text_background</item>
+        <item name="android:background">@drawable/bg_edit_text</item>
     </style>
 
     <style name="Theme.Vought.FormEditTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -25,15 +25,12 @@
     <style name="Theme.Vought.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/white</item>
-
+        <item name="android:textColor">@color/secundary_color_vought</item>
         <item name="android:layout_marginStart">36dp</item>
         <item name="android:layout_marginEnd">36dp</item>
-
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">13dp</item>
         <item name="android:layout_marginBottom">24dp</item>
-
-        <item name="backgroundTint">@color/button_background</item>
+        <item name="backgroundTint">@color/color_vought</item>
     </style>
 
     <style name="Theme.Vought.TextViewBase" parent="Theme.Vought.FormContainer">

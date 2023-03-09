@@ -9,11 +9,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="gray_border">#DBDBDB</color>
-    <color name="gray">#FAFAFA</color>
+    <color name="gray">#329F9B9B</color>
     <color name="gray_darker">#EFEFEF</color>
     <color name="gray_text">#999999</color>
 
-    <color name="blue_disabled">#C3E0FA</color>
-    <color name="blue_enabled">#3897F0</color>
+    <color name="secundary_color_vought">#DCAE38</color>
+    <color name="color_vought_secundary">#390935</color>
+    <color name="color_vought">#530A4C</color>
 
 </resources>

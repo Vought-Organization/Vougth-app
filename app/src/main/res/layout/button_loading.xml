@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Button style="@style/Theme.Vought.Button" />
+    <Button
+        style="@style/Theme.Vought.Button"
+        android:background="@drawable/bg_button_custom" />
 
     <ProgressBar
         android:layout_width="32dp"
         android:layout_gravity="center_horizontal"
         android:elevation="2dp"
-        android:layout_marginTop="16dp"
-        android:indeterminateTint="@color/white"
+        android:layout_marginTop="13dp"
+        android:indeterminateTint="@color/secundary_color_vought"
         android:visibility="gone"
         android:layout_height="32dp"
         tools:visibility="visible" />
