@@ -45,7 +45,7 @@
                     style="@style/Theme.Vought.FormEditText"
                     android:autofillHints="@null"
                     android:hint="@string/email"
-                    android:drawableLeft="@drawable/ic_vought_camera"
+                    android:drawableLeft="@drawable/ic_email"
                     android:textColorHint="@color/white"
                     android:inputType="textEmailAddress"
                     android:drawablePadding="10dp" />
@@ -63,6 +63,8 @@
                     android:layout_height="match_parent"
                     android:autofillHints="@null"
                     android:hint="@string/password"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_password"
                     android:inputType="textPassword"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>

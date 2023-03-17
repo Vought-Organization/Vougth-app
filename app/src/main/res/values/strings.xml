@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Vought</string>
     <string name="email">Email</string>
+    <string name="cpf">CPF</string>
     <string name="password">Senha</string>
     <string name="enter">Entrar</string>
     <string name="or">ou</string>
     <string name="does_not_have_account">Não tem uma conta? <b><font color="#ffffff">Cadastre-se.</font></b></string>
-    <string name="already_has_account">Já tem uma conta? <b><font color="#000000">Faça login.</font></b></string>
+    <string name="already_has_account">Já tem uma conta? <b><font color="#ffffff">Faça login.</font></b></string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="action_settings">Settings</string>
     <string name="next">Avançar</string>
