@@ -91,7 +91,7 @@
                 android:id="@+id/login_btn_enter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="@string/enter" />
+                app:text="@string/next" />
 
             <FrameLayout
                 style="@style/Theme.Vought.FormContainer"
@@ -104,12 +104,6 @@
                     android:layout_gravity="center"
                     android:background="@color/secundary_color_vought" />
 
-                <TextView
-                    style="@style/Theme.Vought.TextViewBase"
-                    android:layout_gravity="center"
-                    android:padding="8dp"
-                    android:text="@string/or"
-                    android:textColor="@color/secundary_color_vought" />
             </FrameLayout>
         </LinearLayout>
 
