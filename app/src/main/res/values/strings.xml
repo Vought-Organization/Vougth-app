@@ -44,4 +44,7 @@
     <string name="logout">Deseja sair?</string>
     <string name="logout_action">Sair</string>
     <string name="cancel">Cancel</string>
+
+    <string name="welcome">Bem-vindo!</string>
+    <string name="welcome_footer">Vought, porque a vida é um evento</string>
 </resources>
