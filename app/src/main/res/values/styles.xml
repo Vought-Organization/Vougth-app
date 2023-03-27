@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="VoughtTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Theme.Vought.FormContainer">
         <item name="android:layout_marginStart">36dp</item>
         <item name="android:layout_marginEnd">36dp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.Vought.FormEditText">

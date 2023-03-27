@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
     <ImageView
@@ -11,121 +11,29 @@
         android:scaleType="centerCrop"
         android:src="@drawable/img_vought_bottom_login"/>
 
-    <ScrollView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_vought_arrow_back"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <fragment
+            android:id="@+id/vought_nav_register_activity"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical">
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/vought_nav_register"
+            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/login_img_logo"
-                android:layout_width="match_parent"
-                android:layout_height="157dp"
-                android:layout_marginBottom="48dp"
-                android:contentDescription="@null"
-                android:src="@drawable/img_logo_vought" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ipt_name_edit"
-                style="@style/Theme.Vought.FormEditTextInput"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_name"
-                    style="@style/Theme.Vought.FormEditText"
-                    android:autofillHints="@null"
-                    android:drawableLeft="@drawable/ic_name_login"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/name"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="@color/white" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ipt_register_email"
-                style="@style/Theme.Vought.FormEditTextInput"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_edit_email"
-                    style="@style/Theme.Vought.FormEditText"
-                    android:layout_height="match_parent"
-                    android:autofillHints="@null"
-                    android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/white" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ipt_register_edit_password"
-                style="@style/Theme.Vought.FormEditTextInput"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_edit_password"
-                    style="@style/Theme.Vought.FormEditText"
-                    android:layout_height="match_parent"
-                    android:autofillHints="@null"
-                    android:drawableLeft="@drawable/ic_cpf_login"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/cpf"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/white" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.example.vought.login.LoadingButton
-                android:id="@+id/login_btn_enter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:text="@string/next" />
-
-            <FrameLayout
-                style="@style/Theme.Vought.FormContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/secundary_color_vought" />
-
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintBottom_toTopOf="@id/login_txt_register"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/login_txt_register"
-                style="@style/Theme.Vought.TextViewBase"
-                android:layout_width="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                android:padding="24dp"
-                android:text="@string/already_has_account"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

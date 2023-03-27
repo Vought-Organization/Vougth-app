@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vought_nav_register"
+    app:startDestination="@id/fragment_register_vought">
+
+    <fragment
+        android:id="@+id/fragment_register_vought"
+        android:name="com.example.vought.register.RegisterFragment"
+        android:label=""
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_fragment_register_vought_to_fragment_register_password_vought"
+            app:destination="@id/fragment_register_password_vought" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_register_password_vought"
+        android:name="com.example.vought.register.RegisterPasswordFragment"
+        android:label=""
+        tools:layout="@layout/fragment_register_password">
+        <action
+            android:id="@+id/action_fragment_register_password_vought_to_fragmen_welcome"
+            app:destination="@id/fragmen_welcome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmen_welcome"
+        android:name="com.example.vought.register.RegisterWelcomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_register_welcome">
+    </fragment>
+
+</navigation>
