@@ -5,11 +5,10 @@
     <string name="password">Senha</string>
     <string name="enter">Entrar</string>
     <string name="or">ou</string>
-    <string name="does_not_have_account">Não tem uma conta? <b><font color="#ffffff">Cadastre-se.</font></b></string>
     <string name="already_has_account">Já tem uma conta? <b><font color="#ffffff">Faça login.</font></b></string>
     <string name="welcome_account"><b>VOUGHT</b>\n Porque a vida é um evento.</string>
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ajustes</string>
     <string name="next">Avançar</string>
     <string name="name">Nome</string>
     <string name="password_confirm">Confirmar senha</string>
@@ -43,5 +42,6 @@
     <string name="follow">Seguir</string>
     <string name="logout">Deseja sair?</string>
     <string name="logout_action">Sair</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Cancelar</string>
+    <string name="does_not_have_account">Não tem uma conta? <b><font color="#ffffff">Cadastre-se.</font></b></string>
 </resources>
