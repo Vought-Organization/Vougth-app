@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
         android:layout_width="match_parent"
@@ -13,6 +13,12 @@
         android:src="@drawable/img_vought_bottom_login"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_vought_arrow_back" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,11 +36,11 @@
 
             <ImageView
                 android:id="@+id/login_img_logo"
-                android:layout_marginBottom="48dp"
                 android:layout_width="match_parent"
-                android:src="@drawable/img_logo_vought"
                 android:layout_height="157dp"
-                android:contentDescription="@null" />
+                android:layout_marginBottom="48dp"
+                android:contentDescription="@null"
+                android:src="@drawable/img_logo_vought" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_edit_email_input"
@@ -45,11 +51,11 @@
                     android:id="@+id/login_edit_email"
                     style="@style/Theme.Vought.FormEditText"
                     android:autofillHints="@null"
-                    android:hint="@string/email"
                     android:drawableLeft="@drawable/ic_email"
-                    android:textColorHint="@color/white"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:drawablePadding="10dp" />
+                    android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -63,9 +69,9 @@
                     style="@style/Theme.Vought.FormEditText"
                     android:layout_height="match_parent"
                     android:autofillHints="@null"
-                    android:hint="@string/password"
-                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/ic_password"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -82,17 +88,10 @@
                 android:layout_height="wrap_content">
 
                 <View
-                    android:background="@color/secundary_color_vought"
-                    android:layout_gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp" />
-
-                <TextView
-                    style="@style/Theme.Vought.TextViewBase"
-                    android:text="@string/or"
-                    android:textColor="@color/secundary_color_vought"
+                    android:layout_height="1dp"
                     android:layout_gravity="center"
-                    android:padding="8dp" />
+                    android:background="@color/secundary_color_vought" />
             </FrameLayout>
         </LinearLayout>
 
@@ -108,12 +107,12 @@
     <TextView
         android:id="@+id/login_txt_register"
         style="@style/Theme.Vought.TextViewBase"
-        android:text="@string/does_not_have_account"
         android:layout_width="match_parent"
-        android:textAlignment="center"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:padding="24dp"
+        android:text="@string/does_not_have_account"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

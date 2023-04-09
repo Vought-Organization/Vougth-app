@@ -1,50 +1,53 @@
 package com.example.vought.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vought.R
+import com.example.vought.databinding.ActivityLoginBinding
 import com.example.vought.register.RegisterActivity
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
+  private lateinit var binding: ActivityLoginBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_login)
+    binding = ActivityLoginBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    val btnTextRegister = findViewById<TextView>(R.id.login_txt_register)
-    val editTextEmail = findViewById<TextInputEditText>(R.id.login_edit_email)
-    val editTextPassword = findViewById<TextInputEditText>(R.id.login_edit_password)
+    setupListeners()
+  }
 
-    editTextEmail.addTextChangedListener(watcher)
-    editTextPassword.addTextChangedListener(watcher)
+  private fun setupListeners() {
+    binding.apply {
+      loginTxtRegister.setOnClickListener {
+        val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+        startActivity(intent)
+      }
 
-    btnTextRegister.setOnClickListener {
-      var voltar = Intent (this, RegisterActivity::class.java)
-      finish()
-      startActivity(voltar)
+      loginEditEmail.addTextChangedListener(watcher)
+      loginEditPassword.addTextChangedListener(watcher)
+
+      loginBtnEnter.setOnClickListener {
+        login()
+      }
     }
+  }
 
-    val buttonEnter = findViewById<LoadingButton>(R.id.login_btn_enter)
-    buttonEnter.setOnClickListener {
-      buttonEnter.showProgress(true)
+  private fun login() {
+    binding.loginBtnEnter.showProgress(true)
 
-      findViewById<TextInputLayout>(R.id.login_edit_email_input)
-        .error = "Esse e-mail é inválido"
+    binding.loginEditEmailInput.error = "Esse e-mail é inválido"
+    binding.loginEditPasswordInput.error = "Senha Incorreta"
 
-      findViewById<TextInputLayout>(R.id.login_edit_password_input)
-        .error = "Senha Incorreta"
-
-      Handler(Looper.getMainLooper()).postDelayed({
-        buttonEnter.showProgress(false)
-      }, 2000)
-    }
+    Handler(Looper.getMainLooper()).postDelayed({
+      binding.loginBtnEnter.showProgress(false)
+    }, 2000)
   }
 
   private val watcher = object : TextWatcher {
@@ -52,12 +55,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-      findViewById<LoadingButton>(R.id.login_btn_enter).isEnabled = s.toString().isNotEmpty()
+      binding.loginBtnEnter.isEnabled = s.toString().isNotEmpty()
     }
 
     override fun afterTextChanged(s: Editable?) {
     }
-
   }
-
 }

@@ -29,5 +29,4 @@
         android:label=""
         tools:layout="@layout/fragment_register_welcome">
     </fragment>
-
 </navigation>

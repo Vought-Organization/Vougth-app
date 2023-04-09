@@ -44,4 +44,5 @@
     <string name="logout_action">Sair</string>
     <string name="cancel">Cancelar</string>
     <string name="does_not_have_account">Não tem uma conta? <b><font color="#ffffff">Cadastre-se.</font></b></string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
