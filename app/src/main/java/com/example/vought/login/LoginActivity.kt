@@ -7,10 +7,8 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-import com.example.vought.R
 import com.example.vought.databinding.ActivityLoginBinding
 import com.example.vought.register.RegisterActivity
-import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
   private lateinit var binding: ActivityLoginBinding
