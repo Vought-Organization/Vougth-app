@@ -11,13 +11,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/img_vought_bottom_login" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_vought_arrow_back" />
-
     <fragment
         android:id="@+id/vought_nav_register_activity"
         android:name="androidx.navigation.fragment.NavHostFragment"
