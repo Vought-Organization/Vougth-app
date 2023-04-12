@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = ActivityLoginBinding.inflate(layoutInflater)
     setContentView(binding.root)
-
     setupListeners()
   }
 
@@ -30,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
 
       loginEditEmail.addTextChangedListener(watcher)
       loginEditPassword.addTextChangedListener(watcher)
-
       loginBtnEnter.setOnClickListener {
         login()
       }

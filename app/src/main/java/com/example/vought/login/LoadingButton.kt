@@ -36,7 +36,7 @@ class LoadingButton : FrameLayout {
     progress = getChildAt(1) as ProgressBar
 
     button.text = text
-    button.isEnabled = false
+    button.isEnabled = true
 
     typedArray.recycle()
   }
