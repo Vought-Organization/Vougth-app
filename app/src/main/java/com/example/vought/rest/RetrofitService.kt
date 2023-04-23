@@ -1,26 +1,36 @@
 package com.example.vought.rest
 
-import com.example.vought.model.LoginRequest
-import com.example.vought.model.LoginResponse
-import retrofit2.Response
+import com.example.vought.model.UserData
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface RetrofitService {
 
-    @POST("login")
-    suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+    @GET("v1/users/login")
+    fun getAllUsers() : Call<List<UserData>>
 
-    companion object {
-        private val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    @POST("v1/users")
+    fun saveUser(@Body recipe: UserData) : Call<ResponseBody>
 
-        val instance: RetrofitService by lazy {
-            retrofit.create(RetrofitService::class.java)
+    companion object{
+
+        private val retrofitService : RetrofitService by lazy{
+            val retrofitService = Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            retrofitService.create(RetrofitService::class.java)
+        }
+
+        fun Instance() : RetrofitService {
+            return retrofitService
+
         }
     }
 }

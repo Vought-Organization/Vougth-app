@@ -1,30 +1,34 @@
 package com.example.vought.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.vought.model.LoginResponse
+import com.example.vought.model.UserData
 import com.example.vought.repositories.UserRepository
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _loginResult = MutableLiveData<Result<LoginResponse>>()
-    val loginResult: LiveData<Result<LoginResponse>> = _loginResult
+class LoginViewModel constructor(private val repository: UserRepository) : ViewModel() {
+    val usersLiveData = MutableLiveData<List<UserData>>()
+    var errorMessage = MutableLiveData<String>()
 
-    fun doLogin(email: String, password: String) {
-        viewModelScope.launch {
-            try {
-                val response = repository.login(email, password)
-                _loginResult.postValue(response)
-            } catch (e: IOException) {
-                _loginResult.postValue(Result.failure(e))
-            } catch (e: HttpException) {
-                _loginResult.postValue(Result.failure(e))
+    fun getAllUsers(){
+
+        val request = this.repository.getAllUsers()
+        request.enqueue(object : Callback<List<UserData>>{
+            override fun onResponse(call: Call<List<UserData>>, response: Response<List<UserData>>) {
+                if (response.code() == 200){
+                    //Deu certo minha requisição
+                }else{
+                    //Deu errado
+                    errorMessage.postValue("Erro ao mostrar usuário")
+                }
             }
-        }
+
+            override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                errorMessage.postValue(t.message)
+            }
+        })
     }
 }
