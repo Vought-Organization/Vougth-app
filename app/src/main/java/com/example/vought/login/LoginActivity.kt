@@ -11,17 +11,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.vought.R
 import com.example.vought.databinding.ActivityLoginBinding
+import com.example.vought.model.LoginRequest
+import com.example.vought.model.UserData
 import com.example.vought.register.RegisterActivity
 import com.example.vought.register.RegisterWelcomeFragment
+import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
-import com.example.vought.viewmodel.LoginViewModel
-import com.example.vought.viewmodel.LoginViewModelFactory
-import com.example.vought.repositories.UserRepository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.stream.Collectors
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
-    private val retrofitService = RetrofitService.Instance()
+
     private val TIMEOUT_MS = 5000L // 5 segundos
     private val handler = Handler(Looper.getMainLooper())
 
@@ -29,14 +33,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel = ViewModelProvider(
-            this,
-            LoginViewModelFactory(UserRepository(retrofitService))
-        )[LoginViewModel::class.java]
-
         setupListeners()
     }
+
 
     private fun setupListeners() {
         binding.apply {
@@ -55,27 +54,39 @@ class LoginActivity : AppCompatActivity() {
                 loginBtnEnter.isEnabled = password.toString().isNotEmpty()
             }
 
+            val service = Api.getApiUsers().create(RetrofitService::class.java)
+            val request = service.getAllUsers()
+
             loginBtnEnter.setOnClickListener {
-                val email = loginEditEmail.text.toString()
-                val password = loginEditPassword.text.toString()
+                request.enqueue(object: Callback<List<UserData>> {
+                    override fun onResponse(
+                        call: Call<List<UserData>>,
+                        response: Response<List<UserData>>
+                    ) {
+                        if(response.isSuccessful) {
+                            val usuarios = response.body()
 
-                if (loginEditEmailInput.error != null) {
-                    return@setOnClickListener
-                }
+                            val edtEmail = binding.loginEditEmail.text.toString()
+                            val edtPassword = binding.loginEditPassword.text.toString()
 
-                viewModel.usersLiveData.observe(this@LoginActivity, Observer { users ->
-                    binding.loginBtnEnter.showProgress(false)
-                    if (users.isNullOrEmpty()){
-                        val intent = Intent(this@LoginActivity, RegisterWelcomeFragment::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        binding.loginBtnEnter.isEnabled = true
-                        binding.loginEditPassword.error = getString(R.string.invalid_email)
+                            val usersMatch = usuarios!!.stream()!!
+                                .filter { it.email.equals(edtEmail) && it.password.equals(edtPassword) }
+                                .collect(Collectors.toList())
+
+                            if(!usersMatch.isEmpty()){
+                                // acitivity
+                                return
+                            }
+                            Toast.makeText(applicationContext, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
+                        }
                     }
+
+                    override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                        Toast.makeText(applicationContext, "API não encontrada", Toast.LENGTH_SHORT).show()
+
+                    }
+
                 })
-                viewModel.errorMessage.observe(this@LoginActivity, Observer {
-                    binding.loginBtnEnter.showProgress(false) })
             }
         }
     }

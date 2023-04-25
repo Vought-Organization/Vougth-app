@@ -15,22 +15,6 @@ interface RetrofitService {
     fun getAllUsers() : Call<List<UserData>>
 
     @POST("v1/users")
-    fun saveUser(@Body recipe: UserData) : Call<ResponseBody>
+    fun saveUser(@Body user: UserData) : Call<ResponseBody>
 
-    companion object{
-
-        private val retrofitService : RetrofitService by lazy{
-            val retrofitService = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            retrofitService.create(RetrofitService::class.java)
-        }
-
-        fun Instance() : RetrofitService {
-            return retrofitService
-
-        }
-    }
 }

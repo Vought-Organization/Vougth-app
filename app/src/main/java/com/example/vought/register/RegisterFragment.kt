@@ -13,23 +13,17 @@ import com.example.vought.databinding.FragmentRegisterBinding
 import com.example.vought.login.LoginActivity
 import com.example.vought.repositories.UserRepository
 import com.example.vought.rest.RetrofitService
-import com.example.vought.viewmodel.RegisterViewModel
-import com.example.vought.viewmodel.RegisterViewModelFactory
+
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var viewModel: RegisterViewModel
-    private val retrofitService = RetrofitService.Instance()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterBinding.bind(view)
         setupListeners()
 
-        viewModel = ViewModelProvider(
-            this,
-            RegisterViewModelFactory(UserRepository(retrofitService))
-        )[RegisterViewModel::class.java]
 
         binding.apply {
             registerBtnEnter.setOnClickListener {
@@ -38,26 +32,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
 
-        viewModel.status.observe(this, Observer {
-            if (it) {
-                Toast.makeText(
-                    context,
-                    "Usuário salvo!",
-                    Toast.LENGTH_SHORT
-                ).show()
-                requireActivity().finish()
-            } else {
-                Toast.makeText(
-                    context,
-                    "Erro ao salvar Usuário",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
-    }
 
     private fun setupListeners() {
         binding.apply {

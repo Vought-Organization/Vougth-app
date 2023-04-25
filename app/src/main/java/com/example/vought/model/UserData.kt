@@ -6,5 +6,4 @@ data class UserData(
     val cpf: String,
     val password: String,
     val cep: String,
-    val telefone: String
 )
