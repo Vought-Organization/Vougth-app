@@ -37,7 +37,6 @@
                     android:drawableLeft="@drawable/ic_name_login"
                     android:drawablePadding="10dp"
                     android:hint="@string/name"
-                    android:inputType="textEmailAddress"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +53,7 @@
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="10dp"
                     android:hint="@string/email"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +70,6 @@
                     android:drawableLeft="@drawable/ic_cpf_login"
                     android:drawablePadding="10dp"
                     android:hint="@string/cpf"
-                    android:inputType="textPassword"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +85,7 @@
                     android:drawableLeft="@drawable/ic_password"
                     android:drawablePadding="10dp"
                     android:hint="@string/password"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +119,6 @@
                     android:drawableLeft="@drawable/ic_confirm_password"
                     android:drawablePadding="10dp"
                     android:hint="@string/cep"
-                    android:inputType="textPassword"
                     android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 

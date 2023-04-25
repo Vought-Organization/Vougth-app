@@ -14,14 +14,12 @@ import com.example.vought.R
 import com.example.vought.databinding.FragmentRegisterBinding
 import com.example.vought.login.LoginActivity
 import com.example.vought.model.UserData
-import com.example.vought.repositories.UserRepository
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Body
 
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -44,10 +42,12 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private fun setupListeners() {
         binding.apply {
             registerTxtLogin.setOnClickListener {
-                register()
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
             }
 
         }
+        register()
     }
     private fun register() {
         val service = Api.createService(RetrofitService::class.java)
@@ -67,8 +67,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Registro bem sucedido", Toast.LENGTH_SHORT).show()
                     // Registro bem-sucedido, fazer algo aqui
-                    val intent = Intent(requireContext(), LoginActivity::class.java)
-                    startActivity(intent)
                 } else {
                     Toast.makeText(context, "Erro no registro", Toast.LENGTH_SHORT).show()
                     // Erro no registro, tratar aqui
