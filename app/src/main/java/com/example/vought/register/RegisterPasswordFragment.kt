@@ -21,6 +21,9 @@ class RegisterPasswordFragment : Fragment(R.layout.fragment_register_password) {
       loginBtnEnter.setOnClickListener {
         findNavController().navigate(R.id.action_fragment_register_password_vought_to_fragmen_welcome)
       }
+      loginBtnDivulgar.setOnClickListener {
+        findNavController().navigate(R.id.action_fragment_register_password_vought_to_fragmen_welcome)
+      }
     }
   }
 

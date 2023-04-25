@@ -15,20 +15,22 @@
         app:layout_constraintVertical_bias="0.4">
 
         <LinearLayout
+            android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="70dp">
+            android:orientation="vertical">
 
             <TextView
+                android:textSize="26dp"
                 style="@style/Theme.Vought.TextViewBase.Form"
                 android:text="@string/welcome_to_vought" />
 
             <com.example.vought.login.LoadingButton
-                android:id="@+id/register_btn_next"
+                android:id="@+id/btn_welcome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="@string/next" />
+                android:layout_marginTop="50dp"
+                app:text="@string/enter" />
 
         </LinearLayout>
     </ScrollView>
