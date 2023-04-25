@@ -1,10 +1,13 @@
 package com.example.vought.login
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
@@ -54,41 +57,46 @@ class LoginActivity : AppCompatActivity() {
                 loginBtnEnter.isEnabled = password.toString().isNotEmpty()
             }
 
-            val service = Api.getApiUsers().create(RetrofitService::class.java)
-            val request = service.getAllUsers()
-
             loginBtnEnter.setOnClickListener {
-                request.enqueue(object: Callback<List<UserData>> {
-                    override fun onResponse(
-                        call: Call<List<UserData>>,
-                        response: Response<List<UserData>>
-                    ) {
-                        if(response.isSuccessful) {
-                            val usuarios = response.body()
-
-                            val edtEmail = binding.loginEditEmail.text.toString()
-                            val edtPassword = binding.loginEditPassword.text.toString()
-
-                            val usersMatch = usuarios!!.stream()!!
-                                .filter { it.email.equals(edtEmail) && it.password.equals(edtPassword) }
-                                .collect(Collectors.toList())
-
-                            if(!usersMatch.isEmpty()){
-                                // acitivity
-                                return
-                            }
-                            Toast.makeText(applicationContext, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
-                        Toast.makeText(applicationContext, "API não encontrada", Toast.LENGTH_SHORT).show()
-
-                    }
-
-                })
+                request()
             }
         }
+    }
+
+    private fun request() {
+        val service = Api.createService(RetrofitService::class.java)
+        val request = service.getAllUsers()
+
+        val email = binding.loginEditEmail
+        val password = binding.loginEditPassword
+
+        request.enqueue(object: Callback<List<UserData>> {
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onResponse(
+                call: Call<List<UserData>>,
+                response: Response<List<UserData>>
+            ) {
+                println(response.body())
+                if (response.isSuccessful){
+                    if (response.body()?.isNotEmpty() == true) {
+                        val users = response.body()!!
+                        val user = users.find{ it.email == email.text.toString() && it.password == password.text.toString() }
+                        if (user != null) {
+                            Toast.makeText(applicationContext, "Login bem sucedido", Toast.LENGTH_SHORT).show()
+//                                    startActivity(telaHome)
+                        } else {
+                            Toast.makeText(applicationContext, "Credenciais inválidas", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(applicationContext, "Não foram encontrados usuários", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserData>>, t: Throwable) {
+                Toast.makeText(applicationContext, "API não encontrada", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun startTimeout() {

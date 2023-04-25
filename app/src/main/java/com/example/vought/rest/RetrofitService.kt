@@ -11,10 +11,9 @@ import retrofit2.http.POST
 
 interface RetrofitService {
 
-    @GET("v1/users/login")
+    @GET("v1/users")
     fun getAllUsers() : Call<List<UserData>>
 
     @POST("v1/users")
     fun saveUser(@Body user: UserData) : Call<ResponseBody>
-
 }
