@@ -34,7 +34,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
         binding.apply {
             registerBtnEnter.setOnClickListener {
-                findNavController().navigate(R.id.action_fragment_register_vought_to_fragment_register_password_vought)
+                register()
             }
         }
     }
@@ -47,23 +47,25 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             }
 
         }
-        register()
     }
     private fun register() {
+
+        val userData = UserData(
+            userName = binding.editName.text.toString(),
+            email = binding.registerEditEmail.text.toString(),
+            cpf = binding.loginEditCpf.text.toString(),
+            password = binding.editPassword.text.toString(),
+            cep = binding.registerEditCep.text.toString()
+        )
         val service = Api.createService(RetrofitService::class.java)
+        val request = service.saveUser(userData)
 
-        val name = binding.editName.text.toString()
-        val email = binding.registerEditEmail.text.toString()
-        val cpf = binding.loginEditCpf.text.toString()
-        val password = binding.editPassword.text.toString()
-        val cep = binding.registerEditCep.text.toString()
-
-        val request = UserData(name, email, cpf, password, cep)
-
-        val call = service.saveUser(request)
-
-        call.enqueue(object: Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+        request.enqueue(object: Callback<UserData> {
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onResponse(
+                call: Call<UserData>,
+                response: Response<UserData>
+            ) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Registro bem sucedido", Toast.LENGTH_SHORT).show()
                     // Registro bem-sucedido, fazer algo aqui
@@ -73,9 +75,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+            override fun onFailure(call: Call<UserData>, t: Throwable) {
                 Toast.makeText(context, "API não encontrada", Toast.LENGTH_SHORT).show()
             }
         })
+
     }
 }
