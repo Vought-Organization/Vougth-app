@@ -15,5 +15,5 @@ interface RetrofitService {
     fun getAllUsers() : Call<List<UserData>>
 
     @POST("v1/users")
-    fun saveUser(@Body user: UserData) : Call<ResponseBody>
+    fun saveUser(@Body user: UserData) : Call<UserData>
 }
