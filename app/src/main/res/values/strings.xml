@@ -24,6 +24,9 @@
     <string name="jump">Pular</string>
     <string name="add_photo">Adicionar uma foto</string>
     <string name="home">Home</string>
+    <string name="location_app">Buscar Eventos</string>
+    <string name="add_event">Novo Evento</string>
+    <string name="profile">Perfil</string>
     <string name="posts">publicações</string>
     <string name="followers">seguidores</string>
     <string name="following">seguindo</string>
