@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.vought.HomeActivity
 import com.example.vought.R
 import com.example.vought.databinding.ActivityLoginBinding
 import com.example.vought.model.LoginRequest
@@ -83,7 +84,8 @@ class LoginActivity : AppCompatActivity() {
                         val user = users.find{ it.email == email.text.toString() && it.password == password.text.toString() }
                         if (user != null) {
                             Toast.makeText(applicationContext, "Login bem sucedido", Toast.LENGTH_SHORT).show()
-//                                    startActivity(telaHome)
+                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                            startActivity(intent)
                         } else {
                             Toast.makeText(applicationContext, "Credenciais inválidas", Toast.LENGTH_SHORT).show()
                         }

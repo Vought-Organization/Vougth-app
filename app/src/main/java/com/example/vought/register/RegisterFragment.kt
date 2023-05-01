@@ -31,7 +31,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding = FragmentRegisterBinding.bind(view)
         setupListeners()
 
-
         binding.apply {
             registerBtnEnter.setOnClickListener {
                 register()
@@ -69,9 +68,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 println(userData)
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Registro bem sucedido", Toast.LENGTH_SHORT).show()
-                    // Registro bem-sucedido, fazer algo aqui
+                    findNavController().navigate(R.id.action_fragment_register_vought_to_fragment_register_password_vought)
                 } else {
-                    Toast.makeText(context, "Erro no registro", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Erro ao cadastrar credenciais", Toast.LENGTH_SHORT).show()
                     // Erro no registro, tratar aqui
                 }
             }
