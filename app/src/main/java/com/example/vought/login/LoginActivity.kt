@@ -18,7 +18,6 @@ import com.example.vought.home.HomeActivity
 import com.example.vought.model.LoginRequest
 import com.example.vought.model.UserData
 import com.example.vought.register.RegisterActivity
-import com.example.vought.register.RegisterWelcomeFragment
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
 import retrofit2.Call
