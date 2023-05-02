@@ -7,8 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.vought.R
 import com.example.vought.databinding.FragmentRegisterBinding
@@ -16,7 +14,6 @@ import com.example.vought.login.LoginActivity
 import com.example.vought.model.UserData
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,7 +66,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 println(userData)
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Registro bem sucedido", Toast.LENGTH_SHORT).show()
-                    // Registro bem-sucedido, fazer algo aqui
+                    findNavController().navigate(R.id.action_fragment_register_vought_to_fragment_register_password_vought)
                 } else {
                     Toast.makeText(context, "Erro no registro", Toast.LENGTH_SHORT).show()
                     // Erro no registro, tratar aqui
