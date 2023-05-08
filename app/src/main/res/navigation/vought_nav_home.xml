@@ -10,15 +10,6 @@
         android:name="com.example.vought.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_location_event"
-            app:destination="@id/navigation_location_event" />
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_new_event"
-            app:destination="@id/navigation_new_event" />
-        <action
-            android:id="@+id/action_navigation_home_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
