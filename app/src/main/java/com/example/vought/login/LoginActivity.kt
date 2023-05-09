@@ -80,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful){
                     if (response.body()?.isNotEmpty() == true) {
                         val users = response.body()!!
+//                        comentar o código abaixo, redirecionar a EventosFragment para ver o funcionamento
                         val user = users.find{ it.email == email.text.toString() && it.password == password.text.toString() }
                         if (user != null) {
                             Toast.makeText(applicationContext, "Login bem sucedido", Toast.LENGTH_SHORT).show()
