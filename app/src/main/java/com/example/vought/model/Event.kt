@@ -1,5 +1,13 @@
 package com.example.vought.model
 
-data class Event(
+import java.time.LocalDateTime
 
+data class Event(
+    val cep: String,
+    val name_event: String,
+    val category_event: String,
+    val description: String,
+    val addressEvent: String,
+    val city: String,
+    val state: String,
 )

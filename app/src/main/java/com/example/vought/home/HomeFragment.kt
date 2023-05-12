@@ -19,6 +19,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
         return binding.root
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView(){
+
     }
 
 }
