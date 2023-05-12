@@ -27,6 +27,7 @@
     <string name="location_app">Buscar Eventos</string>
     <string name="add_event">Novo Evento</string>
     <string name="profile">Perfil</string>
+    <string name="carrossel_event">Últimos eventos</string>
     <string name="posts">publicações</string>
     <string name="followers">seguidores</string>
     <string name="following">seguindo</string>

@@ -21,5 +21,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/img_fundo"
         android:src="@drawable/img_logo_vought" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text="@string/carrossel_event"
+        app:layout_constraintTop_toBottomOf="@+id/img_fundo"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
