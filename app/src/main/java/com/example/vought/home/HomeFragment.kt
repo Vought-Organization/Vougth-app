@@ -29,7 +29,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         addDataSource()
         return binding.root
     }
-    private fun addDataSource(){
+
+    private fun addDataSource() {
         val dataSource = DataSource.createdDataSet()
         this.eventAdapter.setDataSet(dataSource)
 //
@@ -37,9 +38,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //        val request = service.getAllUsers()
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView() {
         this.eventAdapter = EventAdpter()
-        binding.recyclerview.layoutManager = LinearLayoutManager(this.context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerview.layoutManager =
+            LinearLayoutManager(this.context, RecyclerView.HORIZONTAL, false)
         binding.recyclerview.adapter = this.eventAdapter
     }
 }
