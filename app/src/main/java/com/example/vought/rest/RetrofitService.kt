@@ -1,5 +1,6 @@
 package com.example.vought.rest
 
+import com.example.vought.model.Event
 import com.example.vought.model.UserData
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -16,4 +17,10 @@ interface RetrofitService {
 
     @POST("v1/users")
     fun saveUser(@Body user: UserData) : Call<UserData>
+
+    @POST("v1/events")
+    fun saveEvent(@Body event: Event) : Call<Event>
+
+    @GET("v1/events")
+    fun getEvent() : Call<List<Event>>
 }

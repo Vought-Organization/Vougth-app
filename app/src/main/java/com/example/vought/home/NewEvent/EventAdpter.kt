@@ -30,6 +30,10 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         return items.size
     }
 
+    fun setDataSet(events: List<Event>){
+        this.items = events
+    }
+
     class EventViewHolder constructor(
         itemView : View
     ): RecyclerView.ViewHolder(itemView){
