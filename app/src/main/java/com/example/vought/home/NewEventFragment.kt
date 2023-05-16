@@ -1,4 +1,4 @@
-package com.example.vought.google_maps
+package com.example.vought.home
 
 import android.os.Build
 import android.os.Bundle

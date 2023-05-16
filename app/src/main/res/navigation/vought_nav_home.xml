@@ -14,13 +14,13 @@
 
     <fragment
         android:id="@+id/navigation_location_event"
-        android:name="com.example.vought.google_maps.LocationEventFragment"
+        android:name="com.example.vought.home.LocationEventFragment"
         android:label="@string/location_app"
         tools:layout="@layout/fragment_location_event" />
 
     <fragment
         android:id="@+id/navigation_new_event"
-        android:name="com.example.vought.google_maps.NewEventFragment"
+        android:name="com.example.vought.home.NewEventFragment"
         android:label="@string/add_event"
         tools:layout="@layout/fragment_add_event" />
 

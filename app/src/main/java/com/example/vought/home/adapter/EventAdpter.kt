@@ -1,4 +1,4 @@
-package com.example.vought.home.NewEvent
+package com.example.vought.home.adapter
 
 import android.view.LayoutInflater
 import android.view.View
