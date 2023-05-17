@@ -1,138 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:background="#D8D8D8">
 
-    <EditText
-        android:id="@+id/edt_event_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Nome do evento"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+    <ImageView
+        android:id="@+id/img_fundo"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_vought_bottom_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_category_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Categoria do evento"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+    <ImageView
+        android:id="@+id/login_img_logo"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:src="@drawable/img_logo_vought"
+        app:layout_constraintBottom_toBottomOf="@+id/img_fundo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_description_event"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:gravity="start"
-        android:hint="Descrição do evento "
-        android:inputType="text|textMultiLine"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardCima"
+        android:layout_width="272dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="100dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/CardBaixo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_fundo">
 
-    <EditText
-        android:id="@+id/edt_cep_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="CEP"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+        <ImageView
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/adicionar_evento"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/edt_address_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Endereço do evento"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
 
-    <EditText
-        android:id="@+id/edt_state_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Estado"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardBaixo"
+        android:layout_width="272dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="200dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/edt_city_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Cidade"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+        <ImageView
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/adicionar_evento"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/autoD8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/autoTime"
-        android:layout_alignLeft="@+id/autoTime"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:inputType="textAutoComplete"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
 
-    <!-- Creating autocomplete text field for time -->
-    <EditText
-        android:id="@+id/autoTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/inputPlace"
-        android:layout_alignBottom="@+id/txtTime"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:inputType="textAutoComplete"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
-
-    <EditText
-        android:id="@+id/edt_price_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Preço do evento"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
-
-    <com.example.vought.login.LoadingButton
-        android:id="@+id/btn_salve_event"
-        app:text="Pulblicar evento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

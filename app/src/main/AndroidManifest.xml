@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vought"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".eventos.RegisterEventActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -38,13 +40,13 @@
             android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".splash.SplashActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".register.RegisterActivity"
             android:exported="true" />

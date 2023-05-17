@@ -1,14 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/activity_register_event.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/button_loading.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_add_event.xml" value="0.25" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_location_event.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_register_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_register_welcome.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/res_item_category.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/resr_item_event.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/rbsilva12/Desktop/Vougth-app/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/rbsilva12/Desktop/Vougth-app/app/src/main/res/xml/network_security_config.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
