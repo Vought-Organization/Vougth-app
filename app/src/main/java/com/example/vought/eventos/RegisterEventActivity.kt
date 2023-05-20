@@ -1,10 +1,12 @@
 package com.example.vought.eventos
 
+import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vought.R
 import com.example.vought.databinding.ActivityRegisterEventBinding
 import com.example.vought.model.Event
@@ -15,6 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class RegisterEventActivity : AppCompatActivity() {
 

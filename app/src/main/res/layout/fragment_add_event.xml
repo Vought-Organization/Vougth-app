@@ -27,8 +27,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/CardCima"
-        android:layout_width="272dp"
-        android:layout_height="140dp"
+        android:layout_width="320dp"
+        android:layout_height="170dp"
         android:layout_marginTop="100dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp"
@@ -38,26 +38,40 @@
         app:layout_constraintBottom_toTopOf="@+id/CardBaixo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_fundo">
+        app:layout_constraintTop_toBottomOf="@+id/img_fundo"
+        android:onClick="activity_register_event">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
         <ImageView
-            android:layout_width="79dp"
-            android:layout_height="79dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/adicionar_evento"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="#530A4C"
+            android:text="Crie e personalize seu evento do jeito que preferir"
+            android:textSize="19sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/CardBaixo"
-        android:layout_width="272dp"
-        android:layout_height="140dp"
-        android:layout_marginBottom="200dp"
+        android:layout_width="320dp"
+        android:layout_height="170dp"
+        android:layout_marginBottom="180dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp"
         app:cardElevation="1dp"
@@ -66,18 +80,39 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
         <ImageView
-            android:layout_width="79dp"
-            android:layout_height="79dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/adicionar_evento"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/editar_evento"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_name_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="#530A4C"
+            android:text="Aqui você pode conferir todos os eventos que você já criou e alterá-los"
+            android:textSize="19sp" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_vought_secundary"
+        app:itemRippleColor="@color/secundary_color_vought"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_home_vought" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
