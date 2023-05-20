@@ -2,6 +2,6 @@
 <network-security-config>
 <base-config cleartextTrafficPermitted="true" />
 <domain-config cleartextTrafficPermitted="true">
-    <domain includeSubdomains="true">https://54.163.233.38:8080/</domain>
+    <domain includeSubdomains="true">https://voughtback.duckdns.org/</domain>
 </domain-config>
 </network-security-config>
