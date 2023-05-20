@@ -16,6 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Locale
 
@@ -51,12 +52,14 @@ class NewEventFragment:Fragment(com.example.vought.R.layout.fragment_add_event) 
     private fun registerEvent() {
         val event = Event(
             cep = binding.edtCepEvent.text.toString(),
-            name_event = binding.edtEventTitle.text.toString(),
-            category_event = binding.edtCategoryEvent.text.toString(),
+            nameEvent = binding.edtEventTitle.text.toString(),
+            categoryEvent = binding.edtCategoryEvent.text.toString(),
             description = binding.edtDescriptionEvent.text.toString(),
             addressEvent = binding.edtAddressEvent.text.toString(),
             city = binding.edtCityEvent.text.toString(),
             state = binding.edtStateEvent.text.toString(),
+            startData = LocalDateTime.now().toString(),
+            endData = LocalDateTime.now().toString()
         )
         val service = Api.createService(RetrofitService::class.java)
         val request = service.saveEvent(event)

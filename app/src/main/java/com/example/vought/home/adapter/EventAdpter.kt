@@ -42,7 +42,7 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
         fun bind(event: Event){
-            eventTitle.text = event.name_event
+            eventTitle.text = event.nameEvent
             eventDescription.text = event.description
         }
     }

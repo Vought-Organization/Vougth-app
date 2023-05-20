@@ -21,6 +21,6 @@ interface RetrofitService {
     @POST("v1/events")
     fun saveEvent(@Body event: Event) : Call<Event>
 
-    @GET("v1/events")
+    @GET("events")
     fun getEvent() : Call<List<Event>>
 }
