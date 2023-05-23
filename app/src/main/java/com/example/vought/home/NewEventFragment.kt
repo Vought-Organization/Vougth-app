@@ -31,15 +31,15 @@ class NewEventFragment : Fragment(R.layout.fragment_add_event) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater)
-       return binding.root
+        setupListeners()
+        return binding.root
     }
 
     private fun setupListeners() {
-        binding.apply {
-            cardCima.setOnClickListener {
-                val intent = Intent(requireContext(), RegisterEventActivity::class.java)
-                startActivity(intent)
-            }
+        binding.CardCima.setOnClickListener {
+            val intent = Intent(requireContext(), RegisterEventActivity::class.java)
+            startActivity(intent)
+
         }
     }
 }
