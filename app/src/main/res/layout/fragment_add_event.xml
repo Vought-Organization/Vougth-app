@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Crie e personalize seu evento do jeito que preferir"
+                android:text="@string/txt_add_event"
                 android:textColor="#530A4C"
                 android:textSize="19sp" />
         </LinearLayout>
@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Aqui você pode conferir todos os eventos que você já criou e alterá-los"
+                android:text="@string/txt_edit_event"
                 android:textColor="#530A4C"
                 android:textSize="19sp" />
         </LinearLayout>
