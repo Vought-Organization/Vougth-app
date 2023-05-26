@@ -10,4 +10,12 @@ data class Event(
     val addressEvent: String,
     val city: String,
     val state: String,
+    val latitude: String,
+    val longitude: String,
+    val photoProfile: String
 )
+
+fun teste() {
+    val latitudeTeste = "-21.234567"
+    val latitudeNumero = latitudeTeste.toDouble()
+}
