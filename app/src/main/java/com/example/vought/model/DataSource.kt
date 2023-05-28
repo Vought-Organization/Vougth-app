@@ -47,13 +47,31 @@ object DataSource {
         list.add(
             CategoryEvent(
                 "Evento 1 ",
-                R.drawable.festas
+                R.drawable.teatro
             )
         )
         list.add(
             CategoryEvent(
                 "Evento 1 ",
-                R.drawable.festas
+                R.drawable.standup
+            )
+        )
+        list.add(
+            CategoryEvent(
+                "Evento 1 ",
+                R.drawable.congresso
+            )
+        )
+        list.add(
+            CategoryEvent(
+                "Evento 1 ",
+                R.drawable.computador
+            )
+        )
+        list.add(
+            CategoryEvent(
+                "Evento 1 ",
+                R.drawable.brincadeira
             )
         )
         list.add(
