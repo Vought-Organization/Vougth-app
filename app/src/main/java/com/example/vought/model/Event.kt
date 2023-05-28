@@ -17,7 +17,7 @@ data class Event(
 //    val endData: String
 )
 
-fun teste() {
-    val latitudeTeste = "-21.234567"
-    val latitudeNumero = latitudeTeste.toDouble()
-}
+//fun teste() {
+//    val latitudeTeste = "-21.234567"
+//    val latitudeNumero = latitudeTeste.toDouble()
+//}
