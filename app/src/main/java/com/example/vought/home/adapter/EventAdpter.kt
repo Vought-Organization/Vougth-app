@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
 import com.example.vought.model.Event
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.resr_item_event.view.*
 
 class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -39,11 +40,13 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     ): RecyclerView.ViewHolder(itemView){
         private val eventTitle = itemView.txt_name_event
         private val eventDescription = itemView.txt_descripition_event
+        private val eventImage = itemView.iv_item_event
 
 
         fun bind(event: Event){
             eventTitle.text = event.nameEvent
             eventDescription.text = event.description
+            Picasso.get().load(event.photoProfile).into(eventImage)
         }
     }
 

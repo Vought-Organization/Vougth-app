@@ -2,6 +2,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/activity_register_event.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/button_loading.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_add_event.xml" value="0.22" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_location_event.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_register_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/fragment_register_welcome.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/res_item_category.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/rafae/Desktop/Vougth-app/app/src/main/res/layout/resr_item_event.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/rbsilva12/Desktop/Vougth-app/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/rbsilva12/Desktop/Vougth-app/app/src/main/res/xml/network_security_config.xml" value="0.17074275362318841" />
       </map>
