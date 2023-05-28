@@ -44,7 +44,7 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
         fun bind(event: Event){
-            eventTitle.text = event.nameEvent
+            eventTitle.text = event.name_event
             eventDescription.text = event.description
             Picasso.get().load(event.photoProfile).into(eventImage)
         }
