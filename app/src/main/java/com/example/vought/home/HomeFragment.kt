@@ -13,7 +13,7 @@ import com.example.vought.databinding.FragmentHomeBinding
 import com.example.vought.home.adapter.CategoryAdapter
 import com.example.vought.home.adapter.EventAdpter
 import com.example.vought.model.DataSource
-import kotlinx.android.synthetic.main.fragment_home.recyclerview_category
+import com.example.vought.model.Event
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
@@ -34,8 +34,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun addDataSource() {
-        val dataSource = DataSource.createdDataSet()
+        val dataSource = mutableListOf<Event>()
+        DataSource.populateDataSet(dataSource, this.eventAdapter, this.activity)
         this.eventAdapter.setDataSet(dataSource)
+       // this.eventAdapter.notifyDataSetChanged()
 //
 //        val service = Api.createService(RetrofitService::class.java)
 //        val request = service.getAllUsers()

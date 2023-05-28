@@ -12,10 +12,12 @@ data class Event(
     val state: String,
     val latitude: String,
     val longitude: String,
-    val photoProfile: String
+    val photoProfile: String,
+//    val startData: String,
+//    val endData: String
 )
 
-fun teste() {
-    val latitudeTeste = "-21.234567"
-    val latitudeNumero = latitudeTeste.toDouble()
-}
+//fun teste() {
+//    val latitudeTeste = "-21.234567"
+//    val latitudeNumero = latitudeTeste.toDouble()
+//}

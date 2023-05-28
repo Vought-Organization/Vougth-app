@@ -48,36 +48,37 @@ class RegisterEventActivity : AppCompatActivity() {
     }
 
     private fun registerEvent() {
-        val event = Event(
-            cep = binding.edtCepEvent.text.toString(),
-            name_event = binding.edtEventTitle.text.toString(),
-            category_event = binding.edtCategoryEvent.text.toString(),
-            description = binding.edtDescriptionEvent.text.toString(),
-            addressEvent = binding.edtAddressEvent.text.toString(),
-            city = binding.edtCityEvent.text.toString(),
-            state = binding.edtStateEvent.text.toString()
-        )
-        val service = Api.createService(RetrofitService::class.java)
-        val request = service.saveEvent(event)
-
-        request.enqueue(object: Callback<Event> {
-            @RequiresApi(Build.VERSION_CODES.N)
-            override fun onResponse(
-                call: Call<Event>,
-                response: Response<Event>
-            ) {
-                println(event)
-                if (response.isSuccessful) {
-                    Toast.makeText(this@RegisterEventActivity, "Evento cadastrado", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
-                    // Erro no registro, tratar aqui
-                }
-            }
-
-            override fun onFailure(call: Call<Event>, t: Throwable) {
-                Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        val event = Event(
+//            cep = binding.edtCepEvent.text.toString(),
+//            name_event = binding.edtEventTitle.text.toString(),
+//            category_event = binding.edtCategoryEvent.text.toString(),
+//            description = binding.edtDescriptionEvent.text.toString(),
+//            addressEvent = binding.edtAddressEvent.text.toString(),
+//            city = binding.edtCityEvent.text.toString(),
+//            state = binding.edtStateEvent.text.toString(),
+//
+//        )
+//        val service = Api.createService(RetrofitService::class.java)
+//        val request = service.saveEvent(event)
+//
+//        request.enqueue(object: Callback<Event> {
+//            @RequiresApi(Build.VERSION_CODES.N)
+//            override fun onResponse(
+//                call: Call<Event>,
+//                response: Response<Event>
+//            ) {
+//                println(event)
+//                if (response.isSuccessful) {
+//                    Toast.makeText(this@RegisterEventActivity, "Evento cadastrado", Toast.LENGTH_SHORT).show()
+//                } else {
+//                    Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
+//                    // Erro no registro, tratar aqui
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<Event>, t: Throwable) {
+//                Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
+//            }
+//        })
     }
 }
