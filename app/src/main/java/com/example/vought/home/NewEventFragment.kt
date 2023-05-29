@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.vought.R
 import com.example.vought.databinding.FragmentAddEventBinding
 import com.example.vought.eventos.RegisterEventActivity
+import com.example.vought.myevents.MyEventsActivity
 
 class NewEventFragment : Fragment(R.layout.fragment_add_event) {
     private lateinit var binding: FragmentAddEventBinding
@@ -28,6 +29,11 @@ class NewEventFragment : Fragment(R.layout.fragment_add_event) {
             val intent = Intent(requireContext(), RegisterEventActivity::class.java)
             startActivity(intent)
 
+        }
+
+        binding.CardBaixo.setOnClickListener {
+            val intent = Intent(requireContext(), MyEventsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

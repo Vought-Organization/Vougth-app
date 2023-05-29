@@ -51,7 +51,7 @@ class LocationEventFragment : Fragment() {
         items.forEach { item ->
             val marker = googleMap.addMarker(
                 MarkerOptions()
-                    .title(item.name_event)
+                    .title(item.nameEvent)
                     .snippet(item.addressEvent)
                     .position(LatLng(item.latitude.toDouble(), item.longitude.toDouble()))
             )
