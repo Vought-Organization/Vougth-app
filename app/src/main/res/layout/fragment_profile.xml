@@ -1,8 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#D8D8D8">
 
-<!--    xml do samuel -->
+    <LinearLayout
+        android:id="@+id/linearTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_vought_secundary"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintHeight="220dp"
+        android:orientation="horizontal">
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/profile_edit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textFontWeight="400"
+        android:textColor="@color/black"
+        android:text="Nome do usuário"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearMiddle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+       />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/edit_square"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@id/userName"
+        app:layout_constraintBottom_toBottomOf="@id/userName"
+     />
+
+    <LinearLayout
+        android:id="@+id/linearMiddle"
+        android:layout_width="300dp"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:gravity="center"
+
+        app:layout_constraintTop_toBottomOf="@+id/linearTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_edit_email"
+            style="@style/Theme.Vought.FormEditText"
+            android:autofillHints="@null"
+            android:drawableRight="@drawable/edit_square"
+            android:drawablePadding="10dp"
+            android:hint="@string/email"
+            android:layout_marginBottom="20dp"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/white" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_edit_cpf"
+            style="@style/Theme.Vought.FormEditText"
+            android:autofillHints="@null"
+            android:drawableRight="@drawable/edit_square"
+            android:drawablePadding="10dp"
+            android:hint="@string/cpf"
+            android:layout_marginBottom="20dp"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/white" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_edit_password"
+            style="@style/Theme.Vought.FormEditText"
+            android:autofillHints="@null"
+            android:drawableRight="@drawable/edit_square"
+            android:drawablePadding="10dp"
+            android:hint="@string/password"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/white" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_vought_secundary"
+        app:itemRippleColor="@color/secundary_color_vought"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_home_vought" />
+    <!--    xml do samuel -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
