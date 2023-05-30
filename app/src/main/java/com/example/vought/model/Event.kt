@@ -3,9 +3,10 @@ package com.example.vought.model
 import java.time.LocalDateTime
 
 data class Event(
+    val idEvent: Int,
     val cep: String,
-    val name_event: String,
-    val category_event: String,
+    val nameEvent: String,
+    val categoryEvent: String,
     val description: String,
     val addressEvent: String,
     val city: String,
