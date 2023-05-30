@@ -36,6 +36,11 @@
         <activity
             android:name=".eventos.RegisterEventActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".myevents.MyEventsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".home.HomeActivity"
             android:exported="true"
@@ -48,8 +53,7 @@
         </activity>
         <activity
             android:name=".splash.SplashActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".register.RegisterActivity"
             android:exported="true" />
