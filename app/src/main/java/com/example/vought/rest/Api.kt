@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Api {
-    var BASE_URL = "https://voughtback.duckdns.org/"
+    var BASE_URL = "http://54.159.231.168:30080"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
