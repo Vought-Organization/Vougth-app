@@ -21,7 +21,7 @@ object DataSource {
     ) {
         service.getEvent().enqueue(object : Callback<List<Event>>{
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
-                if (response.isSuccessful && response.body()!!.isNotEmpty()) {
+               if (response.isSuccessful && response.body()!!.isNotEmpty()) {
                     dataSet.clear()
                     dataSet.addAll(response.body()!!)
                     adapter.notifyDataSetChanged()

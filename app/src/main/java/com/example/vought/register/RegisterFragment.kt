@@ -1,5 +1,6 @@
 package com.example.vought.register
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -50,7 +51,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             email = binding.registerEditEmail.text.toString(),
             cpf = binding.loginEditCpf.text.toString(),
             password = binding.editPassword.text.toString(),
-            cep = binding.registerEditCep.text.toString()
+            cep = binding.registerEditCep.text.toString(),
+            idUser = null
         )
 
         val service = Api.createService(RetrofitService::class.java)
@@ -76,5 +78,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 Toast.makeText(context, "API não encontrada", Toast.LENGTH_SHORT).show()
             }
         })
+
+
     }
+
+
 }
