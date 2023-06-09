@@ -1,5 +1,6 @@
 package com.example.vought.home
 
+
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,9 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(binding.root)
 
         navView = binding.navView
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_home) as NavHostFragment
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_home)
+                as NavHostFragment
+
         val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
@@ -39,6 +42,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         navView.setupWithNavController(navController)
         navView.setOnNavigationItemSelectedListener(this)
     }
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -65,5 +69,4 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         return false
     }
-
 }

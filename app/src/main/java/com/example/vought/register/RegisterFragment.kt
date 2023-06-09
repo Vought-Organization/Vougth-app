@@ -1,5 +1,6 @@
 package com.example.vought.register
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -22,12 +23,10 @@ import retrofit2.Response
 class RegisterFragment : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterBinding.bind(view)
         setupListeners()
-
 
         binding.apply {
             registerBtnEnter.setOnClickListener {
@@ -42,9 +41,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 startActivity(intent)
             }
-
         }
     }
+
     private fun register() {
 
         val userData = UserData(
@@ -52,8 +51,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             email = binding.registerEditEmail.text.toString(),
             cpf = binding.loginEditCpf.text.toString(),
             password = binding.editPassword.text.toString(),
-            cep = binding.registerEditCep.text.toString()
+            cep = binding.registerEditCep.text.toString(),
+            idUser = null
         )
+
         val service = Api.createService(RetrofitService::class.java)
         val request = service.saveUser(userData)
 
@@ -78,5 +79,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             }
         })
 
+
     }
+
+
 }
