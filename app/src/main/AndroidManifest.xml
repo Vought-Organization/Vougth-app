@@ -20,6 +20,16 @@
         android:theme="@style/Theme.Vought"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".lgpd.LGPDActivity"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".category.CategoryActivity"
             android:exported="false" />
         <!--
@@ -47,11 +57,6 @@
             android:name=".login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".splash.SplashActivity"
@@ -62,9 +67,7 @@
         <activity
             android:name=".home.HomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_home">
-        </activity>
-
+            android:label="@string/title_activity_home"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".lgpd.LGPDActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imagem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_logo_vought"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_below="@id/imagem"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Termos de Uso e Política de Privacidade"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/termos"
+            android:layout_below="@id/imagem"
+            android:layout_width="300dp"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="480dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="match_parent"
+                    android:text="@string/termo_de_uso"/>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_cadastro_google"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/termos"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#530A4C"
+            android:text="Compreendo e aceito os Termos e Condições de Vought"
+            android:textAllCaps="false"
+            android:onClick="aceitar"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
