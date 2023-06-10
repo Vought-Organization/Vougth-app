@@ -40,56 +40,44 @@ object DataSource {
         val list = ArrayList<CategoryEvent>()
         list.add(
             CategoryEvent(
-                "Evento 1 ",
+                "Shows",
                 R.drawable.festas
             )
         )
         list.add(
             CategoryEvent(
-                "Evento 1 ",
-                R.drawable.teatro
-            )
-        )
-        list.add(
-            CategoryEvent(
-                "Evento 1 ",
-                R.drawable.standup
-            )
-        )
-        list.add(
-            CategoryEvent(
-                "Evento 1 ",
+                "Palestras",
                 R.drawable.congresso
             )
         )
         list.add(
             CategoryEvent(
-                "Evento 1 ",
-                R.drawable.computador
+                "Teatro",
+                R.drawable.teatro
             )
         )
         list.add(
             CategoryEvent(
-                "Evento 1 ",
+                "Passeios",
                 R.drawable.brincadeira
             )
         )
         list.add(
             CategoryEvent(
-                "Evento 1 ",
-                R.drawable.festas
+                "Congressos",
+                R.drawable.computador
             )
         )
         list.add(
             CategoryEvent(
-                "Evento 1 ",
-                R.drawable.festas
+                "Infantil",
+                R.drawable.brincadeira
             )
         )
         list.add(
             CategoryEvent(
-                "Evento 1 ",
-                R.drawable.festas
+                "Standup",
+                R.drawable.standup
             )
         )
         return list

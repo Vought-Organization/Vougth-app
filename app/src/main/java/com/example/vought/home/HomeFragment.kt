@@ -1,5 +1,6 @@
 package com.example.vought.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
+import com.example.vought.category.CategoryActivity
 import com.example.vought.databinding.FragmentHomeBinding
 import com.example.vought.home.adapter.CategoryAdapter
 import com.example.vought.home.adapter.EventAdpter
 import com.example.vought.model.DataSource
 import com.example.vought.model.Event
+import com.example.vought.myevents.MyEventsActivity
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
@@ -57,9 +60,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun initRecyclerViewCategory() {
         this.categoryAdapter = CategoryAdapter()
-        val gridLayoutManager = GridLayoutManager(requireContext(), 3
+        val gridLayoutManager = GridLayoutManager(requireContext(), 1
         ) // Defina o número de colunas desejado
         binding.recyclerviewCategory.layoutManager = gridLayoutManager
         binding.recyclerviewCategory.adapter = this.categoryAdapter
+
+        categoryAdapter.setOnItemClickListener { category ->
+            val intent = Intent(activity, CategoryActivity::class.java)
+            intent.putExtra("categoryTitle", category.title)
+            startActivity(intent)
+        }
     }
 }

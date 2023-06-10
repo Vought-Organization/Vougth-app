@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vought"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".category.CategoryActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -38,11 +40,9 @@
         <activity
             android:name=".eventos.RegisterEventActivity"
             android:exported="false" />
-
         <activity
             android:name=".myevents.MyEventsActivity"
             android:exported="false" />
-
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
