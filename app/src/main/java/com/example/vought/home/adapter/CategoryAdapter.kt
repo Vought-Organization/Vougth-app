@@ -1,8 +1,10 @@
 package com.example.vought.home.adapter
 
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
 import com.example.vought.model.CategoryEvent
@@ -11,6 +13,7 @@ import kotlinx.android.synthetic.main.res_item_category.view.txt_title_category
 
 class CategoryAdapter :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items : List<CategoryEvent> = ArrayList()
+    private var clickListener: ((CategoryEvent) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return categoryViewHolder(
@@ -18,10 +21,18 @@ class CategoryAdapter :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         )
     }
 
+    fun setOnItemClickListener(listener: (CategoryEvent) -> Unit) {
+        clickListener = listener
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is categoryViewHolder ->{
-                holder.bind(items[position])
+                val category = items[position]
+                holder.bind(category)
+                holder.itemView.setOnClickListener {
+                    clickListener?.invoke(category)
+                }
             }
         }
     }
