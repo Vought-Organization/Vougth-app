@@ -60,6 +60,6 @@ interface RetrofitService {
     fun getAddress(@Path("cep") cep: String): Call<EventRegister>
 
 
-    @GET("events/{id}")
+    @GET("v1/ticket-events/events/{id}")
     fun getTickets(@Path("id") id: Int): Call<List<Ticket>>
 }

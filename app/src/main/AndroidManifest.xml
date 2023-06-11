@@ -20,9 +20,11 @@
         android:theme="@style/Theme.Vought"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".event.EventActivity"
+            android:exported="false" />
+        <activity
             android:name=".lgpd.LGPDActivity"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +33,8 @@
         </activity>
         <activity
             android:name=".category.CategoryActivity"
-            android:label="Eventos"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Eventos" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -53,13 +55,12 @@
             android:exported="false" />
         <activity
             android:name=".myevents.MyEventsActivity"
-            android:label="Seus eventos criados"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Seus eventos criados" />
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true" />
@@ -69,7 +70,7 @@
         <activity
             android:name=".home.HomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home" />
     </application>
 
 </manifest>

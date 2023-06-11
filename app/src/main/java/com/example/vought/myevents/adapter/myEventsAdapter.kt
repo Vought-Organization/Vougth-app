@@ -70,12 +70,12 @@ class myEventsAdapter (val context: Context, val listaEvento: MutableList<Event>
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     Log.d("MyEventsActivity", "Deu certo")
                 } else {
-                    Log.d("MyEventsActivity", "Failed to delete event. Error: ${response.code()}")
+                    Log.d("MyEventsActivity", "Falha ao deletar evento. Error: $event")
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.d("MyEventsActivity", "Failed to delete event. Error: ${t.message}")
+                Log.d("MyEventsActivity", "Failed to delete event. Error: $event")
             }
         })
     }

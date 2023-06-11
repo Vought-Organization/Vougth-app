@@ -1,45 +1,47 @@
+package com.example.vought.event
+
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.vought.databinding.FragmentEventBinding
 import com.example.vought.model.Event
 import com.example.vought.model.Ticket
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
-import com.paypal.android.sdk.payments.*
+import com.paypal.android.sdk.payments.PayPalConfiguration
+import com.paypal.android.sdk.payments.PayPalPayment
+import com.paypal.android.sdk.payments.PayPalService
+import com.paypal.android.sdk.payments.PaymentActivity
+import com.paypal.android.sdk.payments.PaymentConfirmation
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class EventFragment : Fragment() {
-
+class EventActivity : AppCompatActivity() {
     private lateinit var binding: FragmentEventBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private var eventId: String? = null
+
 
     private val PAYPAL_REQUEST_CODE = 123
-    private val PAYPAL_CLIENT_ID = "Ae9NnC5s9hCMzgK5Bm1dtfHGDtKRiaWc0WteHiwQL5n6NXzmsjCm1VbO5jQuzyarrMQNXS1FEegvtqv6"
+    private val PAYPAL_CLIENT_ID = "AWRIeDw7cMVVsXnj3f2fl2No6LMqdpZHSCwrgJU-RBTNL0WHPfEiemfR78lIHeElEaDAe1S1syoet4uS"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = FragmentEventBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        sharedPreferences = requireContext().getSharedPreferences("eventId", Context.MODE_PRIVATE)
-    }
+        sharedPreferences = getSharedPreferences("eventId", Context.MODE_PRIVATE)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentEventBinding.inflate(inflater, container, false)
-        val view = binding.root
+        val idTeste = intent.getIntExtra("eventId", 1)
 
-        val eventId = sharedPreferences.getInt("eventId", 1)
+
+        val eventIdFromSharedPreferences = sharedPreferences.getString("eventId", null)
 
         val service = Api.createService(RetrofitService::class.java)
         val getEventRequest = service.getEvent()
@@ -49,11 +51,12 @@ class EventFragment : Fragment() {
                 if (response.isSuccessful) {
                     val events = response.body()
                     if (!events.isNullOrEmpty()) {
-                        val event = events.find { it.idEvent == eventId }
+                        val event = events.find { it.idEvent == idTeste }
                         if (event != null) {
                             updateEventDetails(event)
                             setupPayPalButton(event)
                         } else {
+                            Log.d("MyEventActivity", "ID do evento $idTeste")
                             showToast("Evento não encontrado")
                         }
                     } else {
@@ -68,8 +71,6 @@ class EventFragment : Fragment() {
                 showToast("Ocorreu um erro inesperado, feche o aplicativo e tente novamente.")
             }
         })
-
-        return view
     }
 
     private fun updateEventDetails(event: Event) {
@@ -81,40 +82,44 @@ class EventFragment : Fragment() {
     }
 
     private fun setupPayPalButton(event: Event) {
-        PayPalConfiguration()
+        val paypalConfig = PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Defina o ambiente do PayPal (sandbox ou produção)
             .clientId(PAYPAL_CLIENT_ID) // Defina o Client ID do PayPal
 
         val payPalButton = binding.btnPaypal
+        val idTeste = intent.getIntExtra("eventId", 1)
 
         payPalButton.setOnClickListener {
 
             val service = Api.createService(RetrofitService::class.java)
-            val getTicketsRequest = service.getTickets(event.idEvent)
 
-            getTicketsRequest.enqueue(object : Callback<List<Ticket>> {
-                override fun onResponse(call: Call<List<Ticket>>, response: Response<List<Ticket>>) {
-                    if (response.isSuccessful) {
-                        val tickets = response.body()
-                        if (!tickets.isNullOrEmpty()) {
-                            val selectedTicket = tickets.firstOrNull()
-                            if (selectedTicket != null) {
-                                performPayment(event, selectedTicket)
+            idTeste?.let { it1 -> service.getTickets(it1) }
+                ?.enqueue(object : Callback<List<Ticket>> {
+                    override fun onResponse(
+                        call: Call<List<Ticket>>,
+                        response: Response<List<Ticket>>
+                    ) {
+                        if (response.isSuccessful) {
+                            val tickets = response.body()
+                            if (!tickets.isNullOrEmpty()) {
+                                val selectedTicket = tickets.firstOrNull()
+                                if (selectedTicket != null) {
+                                    performPayment(event, selectedTicket)
+                                } else {
+                                    showToast("Ingresso não encontrado")
+                                }
                             } else {
-                                showToast("Ingresso não encontrado")
+                                showToast("Não há ingressos disponíveis.")
                             }
                         } else {
-                            showToast("Não há ingressos disponíveis.")
+                            showToast("Erro ao obter ingressos.")
                         }
-                    } else {
-                        showToast("Erro ao obter ingressos.")
                     }
-                }
 
-                override fun onFailure(call: Call<List<Ticket>>, t: Throwable) {
-                    showToast("Ocorreu um erro inesperado ao obter ingressos.")
-                }
-            })
+                    override fun onFailure(call: Call<List<Ticket>>, t: Throwable) {
+                        showToast("Ocorreu um erro inesperado ao obter ingressos.")
+                    }
+                })
         }
     }
 
@@ -130,7 +135,7 @@ class EventFragment : Fragment() {
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Defina o ambiente do PayPal (sandbox ou produção)
             .clientId(PAYPAL_CLIENT_ID) // Defina o Client ID do PayPal
 
-        val intent = Intent(requireContext(), PaymentActivity::class.java)
+        val intent = Intent(this, PaymentActivity::class.java)
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig)
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, paypalPayment)
         startActivityForResult(intent, PAYPAL_REQUEST_CODE)
@@ -154,7 +159,7 @@ class EventFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        requireContext().stopService(Intent(requireContext(), PayPalService::class.java))
+        stopService(Intent(this, PayPalService::class.java))
         super.onDestroy()
     }
 
@@ -164,12 +169,12 @@ class EventFragment : Fragment() {
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Defina o ambiente do PayPal (sandbox ou produção)
             .clientId(PAYPAL_CLIENT_ID) // Defina o Client ID do PayPal
 
-        val intent = Intent(requireContext(), PayPalService::class.java)
+        val intent = Intent(this, PayPalService::class.java)
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig)
-        requireContext().startService(intent)
+        startService(intent)
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

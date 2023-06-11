@@ -1,6 +1,7 @@
 package com.example.vought.category.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
+import com.example.vought.event.EventActivity
 
 import com.example.vought.model.Event
 import kotlinx.android.synthetic.main.fragment_category.view.*
@@ -63,6 +65,12 @@ class CategoryAdapter (val context: Context, val listaEvento: List<Event>): Recy
         } else {
             holder.imagemEvento.setImageResource(R.drawable.congresso)
             Log.d("CategoryAdapter", "Erro not found for category: $categoria") // Imagem padrão se a categoria não estiver no mapa
+        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, EventActivity::class.java)
+            intent.putExtra("eventId", evento.idEvent)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
         }
     }
 
