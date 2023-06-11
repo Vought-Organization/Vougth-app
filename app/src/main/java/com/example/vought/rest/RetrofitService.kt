@@ -25,19 +25,22 @@ interface RetrofitService {
     @GET("v1/users/{idUser}")
     fun getUserById(@Path("idUser") id: String): Call<UserDataUpdate>
 
+    @GET("v1/files/qtty/3")
+    fun getUltimosEventos() : Call<List<Event>>
+
     @POST("v1/events")
     fun saveEvent(@Body event: EventRegister) : Call<EventRegister>
 
     @GET("v1/events")
     fun getEvent() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=shows")
+    @GET("v1/events/find-category?category=show")
     fun getEventShows() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=palestras")
+    @GET("v1/events/find-category?category=palestra")
     fun getEventPalestras() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=teatros")
+    @GET("v1/events/find-category?category=teatro")
     fun getEventTeatros() : Call<List<Event>>
 
     @GET("v1/events/find-category?category=passeios")

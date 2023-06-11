@@ -6,7 +6,7 @@ data class Event(
     val idEvent: Int,
     val cep: String,
     val nameEvent: String,
-    val categoryEvent: String,
+    val category: String,
     val description: String,
     val addressEvent: String,
     val city: String,
