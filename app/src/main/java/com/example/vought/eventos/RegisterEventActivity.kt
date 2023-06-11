@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vought.databinding.ActivityRegisterEventBinding
+import com.example.vought.model.Address
 import com.example.vought.model.EventRegister
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
@@ -43,6 +44,8 @@ class RegisterEventActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viaCepService = Api.createViaCepService()
+
         binding = ActivityRegisterEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -51,7 +54,7 @@ class RegisterEventActivity : AppCompatActivity() {
         }
 
         binding.btnCep.setOnClickListener {
-
+            searchCep()
         }
 
         btnDatePicker = binding.btnDate
@@ -119,27 +122,26 @@ class RegisterEventActivity : AppCompatActivity() {
         }
     }
 
-    private fun searchCep(){
+    private fun searchCep() {
         val cep = binding.edtCepEvent.text.toString()
 
         val request = viaCepService.getAddress(cep)
 
-        request.enqueue(object : Callback<EventRegister> {
-            @RequiresApi(Build.VERSION_CODES.N)
-            override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
+        request.enqueue(object : Callback<Address> {
+            override fun onResponse(call: Call<Address>, response: Response<Address>) {
                 if (response.isSuccessful) {
                     val address = response.body()
                     if (address != null) {
-                        binding.edtAddressEvent.setText(address.addressEvent)
-                        binding.edtCityEvent.setText(address.city)
-                        binding.edtStateEvent.setText(address.state)
+                        binding.edtAddressEvent.setText(address.logradouro)
+                        binding.edtCityEvent.setText(address.localidade)
+                        binding.edtStateEvent.setText(address.uf)
                     }
                 } else {
                     Toast.makeText(this@RegisterEventActivity, "Erro ao obter dados do CEP", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<EventRegister>, t: Throwable) {
+            override fun onFailure(call: Call<Address>, t: Throwable) {
                 Toast.makeText(this@RegisterEventActivity, "Falha ao obter dados do CEP", Toast.LENGTH_SHORT).show()
             }
         })

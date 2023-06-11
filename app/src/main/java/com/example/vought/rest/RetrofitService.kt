@@ -1,5 +1,6 @@
 package com.example.vought.rest
 
+import com.example.vought.model.Address
 import com.example.vought.model.Event
 import com.example.vought.model.EventRegister
 import com.example.vought.model.UserData
@@ -53,6 +54,6 @@ interface RetrofitService {
     fun getEventStandup() : Call<List<Event>>
 
     @GET("{cep}/json")
-    fun getAddress(@Path("cep") cep: String): Call<EventRegister>
+    fun getAddress(@Path("cep") cep: String): Call<Address>
 
 }
