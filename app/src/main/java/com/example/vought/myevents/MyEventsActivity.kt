@@ -19,7 +19,7 @@ class MyEventsActivity : AppCompatActivity() {
     lateinit var myEventsAdapter: myEventsAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)   {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_events)
 
@@ -38,7 +38,7 @@ class MyEventsActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Event>?>, response: Response<List<Event>?>) {
                 val responseBody = response.body()!!
 
-                myEventsAdapter = myEventsAdapter(baseContext, responseBody)
+                myEventsAdapter = myEventsAdapter(baseContext, responseBody.toMutableList())
                 myEventsAdapter.notifyDataSetChanged()
                 recyclerview_events.adapter = myEventsAdapter
 
