@@ -3,6 +3,7 @@ package com.example.vought.myevents
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vought.R
 import com.example.vought.model.Event
@@ -22,7 +23,7 @@ class MyEventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?)   {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_events)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerview_events.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerview_events.layoutManager = linearLayoutManager
@@ -48,5 +49,13 @@ class MyEventsActivity : AppCompatActivity() {
                 d("MyEventsActivity", "onFailure: " + t.message)
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
