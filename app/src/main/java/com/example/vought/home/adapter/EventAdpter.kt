@@ -5,11 +5,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
 import com.example.vought.model.Event
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.resr_item_event.view.*
 
 class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     private var items : List<Event> = ArrayList()
+
+    companion object {
+        private val categoriesIcons = mapOf(
+            "show" to R.drawable.festas,
+            "palestra" to R.drawable.congresso,
+            "teatro" to R.drawable.teatro,
+            "passeios" to R.drawable.brincadeira,
+            "congressos" to R.drawable.computador,
+            "infantil" to R.drawable.brincadeira,
+            "standup" to R.drawable.standup
+        )
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return EventViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.resr_item_event, parent, false)
@@ -39,7 +51,16 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         fun bind(event: Event){
             eventTitle.text = event.nameEvent
             eventDescription.text = event.description
-            Picasso.get().load(event.photoProfile).into(eventImage)
+
+            val categoria = event.category
+
+            if (EventAdpter.categoriesIcons.containsKey(categoria)) {
+                val iconResourceId = EventAdpter.categoriesIcons[categoria] ?: 0
+                if (iconResourceId != 0) {
+                    eventImage.setImageResource(iconResourceId)
+                }
+            }
+
         }
     }
 
