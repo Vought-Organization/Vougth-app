@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vought.databinding.ActivityRegisterEventBinding
-import com.example.vought.login.LoadingButton
 import com.example.vought.model.EventRegister
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
@@ -39,6 +38,7 @@ class RegisterEventActivity : AppCompatActivity() {
     private var mDay: Int = 0
     private var mHour: Int = 0
     private var mMinute: Int = 0
+    private lateinit var viaCepService: RetrofitService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,6 +117,32 @@ class RegisterEventActivity : AppCompatActivity() {
             )
             timePickerDialog.show()
         }
+    }
+
+    private fun searchCep(){
+        val cep = binding.edtCepEvent.text.toString()
+
+        val request = viaCepService.getAddress(cep)
+
+        request.enqueue(object : Callback<EventRegister> {
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
+                if (response.isSuccessful) {
+                    val address = response.body()
+                    if (address != null) {
+                        binding.edtAddressEvent.setText(address.addressEvent)
+                        binding.edtCityEvent.setText(address.city)
+                        binding.edtStateEvent.setText(address.state)
+                    }
+                } else {
+                    Toast.makeText(this@RegisterEventActivity, "Erro ao obter dados do CEP", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<EventRegister>, t: Throwable) {
+                Toast.makeText(this@RegisterEventActivity, "Falha ao obter dados do CEP", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun registerEvent() {
