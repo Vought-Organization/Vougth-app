@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
+
 import com.example.vought.model.Event
 import kotlinx.android.synthetic.main.fragment_category.view.*
-import kotlinx.android.synthetic.main.fragment_myevents.view.*
 import kotlinx.android.synthetic.main.fragment_myevents.view.nameEvent
 
 class CategoryAdapter (val context: Context, val listaEvento: List<Event>): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {

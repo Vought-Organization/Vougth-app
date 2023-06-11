@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/event_fragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D8D8D8">
+
+    <LinearLayout
+        android:id="@+id/linearTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_vought_secundary"
+        android:orientation="vertical"
+        app:layout_constraintHeight="220dp"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/linear_event_image"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:background="@drawable/rounded_border"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/image_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/user_icon"
+               />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/md_submmit_event"
+            android:textSize="20dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="normal"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/comprar_ingresso"
+        app:layout_constraintBottom_toTopOf="@+id/layout_payment"
+        android:textColor="@color/color_vought_secundary"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"
+        android:textSize="20dp"
+
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:id="@+id/layout_payment"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/linearMiddle"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_paypal"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/paypal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/button_paypal"
+            android:paddingLeft="30dp"
+            android:layout_marginRight="15dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/payment_card"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/paypal_card"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/button_paypal_card"
+            android:paddingLeft="45dp"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearMiddle"
+        android:layout_width="350dp"
+        android:layout_height="340dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/background_event_description"
+        android:layout_marginTop="90dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="20dp"
+        >
+
+        <ScrollView
+            android:id="@+id/scroll_bar_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="@string/descri_o_do_evento"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/description_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:text="@string/ut_enim_ad_minim_veniam_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat_duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur_excepteur_sint_occaecat_cupidatat_non_proident_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum"
+                    android:layout_marginBottom="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/local_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/local_do_evento"/>
+                <TextView
+                    android:id="@+id/description_local_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    android:textStyle="normal"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/event_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/programa_o"/>
+                <TextView
+                    android:id="@+id/description_schedule_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    android:textStyle="normal"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+    <!--    xml do samuel -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

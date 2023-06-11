@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
-import com.example.vought.category.CategoryActivity
 import com.example.vought.databinding.FragmentHomeBinding
+//import com.example.vought.R
+import com.example.vought.category.CategoryActivity
+//import com.example.vought.databinding.FragmentHomeBinding
 import com.example.vought.home.adapter.CategoryAdapter
 import com.example.vought.home.adapter.EventAdpter
 import com.example.vought.model.DataSource
