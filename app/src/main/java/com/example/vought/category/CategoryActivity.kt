@@ -3,12 +3,14 @@ package com.example.vought.category
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vought.R
+
 import com.example.vought.category.adapter.CategoryAdapter
 import com.example.vought.model.Event
-import com.example.vought.myevents.adapter.myEventsAdapter
+
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
 import kotlinx.android.synthetic.main.activity_my_events.*
@@ -23,12 +25,20 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerview_events.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerview_events.layoutManager = linearLayoutManager
 
         getMyData()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getMyData() {
@@ -154,8 +164,6 @@ class CategoryActivity : AppCompatActivity() {
                 }
             })
         }
-
-
 
         }
     }

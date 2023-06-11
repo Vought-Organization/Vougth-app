@@ -3,6 +3,7 @@ package com.example.vought.rest
 import com.example.vought.model.Address
 import com.example.vought.model.Event
 import com.example.vought.model.EventRegister
+import com.example.vought.model.Ticket
 import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
 
@@ -26,19 +27,22 @@ interface RetrofitService {
     @GET("v1/users/{idUser}")
     fun getUserById(@Path("idUser") id: String): Call<UserDataUpdate>
 
+    @GET("v1/files/qtty/3")
+    fun getUltimosEventos() : Call<List<Event>>
+
     @POST("v1/events")
     fun saveEvent(@Body event: EventRegister) : Call<EventRegister>
 
     @GET("v1/events")
     fun getEvent() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=shows")
+    @GET("v1/events/find-category?category=show")
     fun getEventShows() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=palestras")
+    @GET("v1/events/find-category?category=palestra")
     fun getEventPalestras() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=teatros")
+    @GET("v1/events/find-category?category=teatro")
     fun getEventTeatros() : Call<List<Event>>
 
     @GET("v1/events/find-category?category=passeios")
@@ -56,4 +60,7 @@ interface RetrofitService {
     @GET("{cep}/json")
     fun getAddress(@Path("cep") cep: String): Call<Address>
 
+
+    @GET("events/{id}")
+    fun getTickets(@Path("id") id: Int): Call<List<Ticket>>
 }

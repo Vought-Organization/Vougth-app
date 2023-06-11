@@ -31,6 +31,7 @@
         </activity>
         <activity
             android:name=".category.CategoryActivity"
+            android:label="Eventos"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.

@@ -107,6 +107,8 @@ class ProfileFragment : Fragment() {
         }
     }
 
+
+
     private fun setEditTextEnabled(enabled: Boolean) {
         with(binding) {
             profileEditEmail.isEnabled = enabled
