@@ -1,6 +1,7 @@
 package com.example.vought.rest
 
 import com.example.vought.model.Event
+import com.example.vought.model.EventRegister
 import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
 
@@ -29,7 +30,7 @@ interface RetrofitService {
     fun getUserById(@Path("idUser") id: String): Call<UserDataUpdate>
 
     @POST("v1/events")
-    fun saveEvent(@Body event: Event) : Call<Event>
+    fun saveEvent(@Body event: EventRegister) : Call<EventRegister>
 
     @GET("v1/events")
     fun getEvent() : Call<List<Event>>
@@ -54,5 +55,8 @@ interface RetrofitService {
 
     @GET("v1/events/find-category?category=standup")
     fun getEventStandup() : Call<List<Event>>
+
+    @GET("{cep}/json")
+    fun getAddress(@Path("cep") cep: String): Call<EventRegister>
 
 }

@@ -43,9 +43,12 @@
         android:textColor="@color/black"
         android:textColorHint="@color/gray_text" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/edt_cep_event"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/black"
@@ -54,6 +57,16 @@
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="@color/gray_text" />
+    <Button
+        android:id="@+id/btn_cep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/color_vought_secundary"
+        android:layout_toEndOf="@+id/edt_cep_event"
+        android:layout_toRightOf="@+id/edt_cep_event"
+        android:text="SELECT CEP" />
+    </RelativeLayout>
+
 
     <EditText
         android:id="@+id/edt_address_event"
@@ -91,48 +104,61 @@
         android:textColor="@color/black"
         android:textColorHint="@color/gray_text" />
 
-    <EditText
-        android:id="@+id/autoD8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/autoTime"
-        android:layout_alignLeft="@+id/autoTime"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:inputType="textAutoComplete"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
-
-    <!-- Creating autocomplete text field for time -->
-    <EditText
-        android:id="@+id/autoTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/inputPlace"
-        android:layout_alignBottom="@+id/txtTime"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:inputType="textAutoComplete"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
-
-    <EditText
-        android:id="@+id/edt_price_event"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Preço do evento"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/in_date"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="@color/black"
+            android:hint="Data"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray_text" />
+
+        <Button
+            android:id="@+id/btn_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_vought_secundary"
+            android:layout_toEndOf="@+id/in_date"
+            android:layout_toRightOf="@+id/in_date"
+            android:text="SELECT DATE" />
+
+        <EditText
+            android:id="@+id/in_time"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/in_date"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:backgroundTint="@color/black"
+            android:hint="Hora"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray_text" />
+
+        <Button
+            android:id="@+id/btn_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_vought_secundary"
+            android:layout_below="@+id/btn_date"
+            android:layout_alignStart="@+id/btn_date"
+            android:layout_alignLeft="@+id/btn_date"
+            android:text="SELECT TIME" />
+
+    </RelativeLayout>
+
 
     <com.example.vought.login.LoadingButton
         android:id="@+id/btn_salve_event"
-        app:text="Pulblicar evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin" />
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        app:text="Pulblicar evento" />
 
 </LinearLayout>
