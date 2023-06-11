@@ -7,9 +7,10 @@ import android.view.MenuItem
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vought.R
+
 import com.example.vought.category.adapter.CategoryAdapter
 import com.example.vought.model.Event
-import com.example.vought.myevents.adapter.myEventsAdapter
+
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
 import kotlinx.android.synthetic.main.activity_my_events.*

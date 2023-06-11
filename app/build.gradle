@@ -7,16 +7,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.vought'
-    compileSdk 33
-    viewBinding {
-        enabled = true
-    }
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.example.vought"
-        minSdk 26
-        targetSdk 33
+        minSdkVersion 26
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -29,20 +25,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
-        viewBinding = true
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
-
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     def nav_version = "2.3.5"
@@ -63,5 +61,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+}
 
+android {
+    namespace 'com.example.vought'
 }
