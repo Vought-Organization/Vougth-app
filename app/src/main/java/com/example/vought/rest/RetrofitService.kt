@@ -5,25 +5,21 @@ import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
 
 import retrofit2.Call
-
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface RetrofitService {
 
     @GET("v1/users")
     fun getAllUsers() : Call<List<UserData>>
 
-
     @POST("v1/users")
     fun saveUser(@Body user: UserData) : Call<UserData>
 
     @PUT("v1/users/{id}")
-    fun updateUserById(@Path("id") id: String, @Body userData: UserDataUpdate): Call<UserData>
+    fun updateUserById(@Path("idEvent") idEvent: String, @Body userData: UserDataUpdate): Call<UserData>
 
+    @DELETE("v1/events/{id}")
+    fun deleteEvent(@Path("id") id: Int): Call<Void>
 
     @GET("v1/users/{idUser}")
     fun getUserById(@Path("idUser") id: String): Call<UserDataUpdate>
