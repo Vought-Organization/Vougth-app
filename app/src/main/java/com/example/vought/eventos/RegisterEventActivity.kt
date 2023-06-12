@@ -2,6 +2,7 @@ package com.example.vought.eventos
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -17,6 +18,7 @@ import com.example.vought.model.Address
 import com.example.vought.model.EventRegister
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
+import com.google.android.gms.maps.model.LatLng
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -122,6 +124,20 @@ class RegisterEventActivity : AppCompatActivity() {
         }
     }
 
+    private fun getLatLngFromAddress(address: String): LatLng? {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val addressList = geocoder.getFromLocationName(address, 1)
+        if (addressList != null) {
+            if (addressList.isNotEmpty()) {
+                val location = addressList?.get(0)
+                if (location != null) {
+                    return LatLng(location.latitude, location.longitude)
+                }
+            }
+        }
+        return null
+    }
+
     private fun searchCep() {
         val cep = binding.edtCepEvent.text.toString()
 
@@ -132,9 +148,18 @@ class RegisterEventActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val address = response.body()
                     if (address != null) {
-                        binding.edtAddressEvent.setText(address.logradouro)
-                        binding.edtCityEvent.setText(address.localidade)
-                        binding.edtStateEvent.setText(address.uf)
+                        val addressString = "${address.logradouro}, ${address.localidade}, ${address.uf}"
+                        val latLng = getLatLngFromAddress(addressString)
+                        if (latLng != null) {
+                            val latitude = latLng.latitude
+                            val longitude = latLng.longitude
+
+                            binding.edtAddressEvent.setText(address.logradouro)
+                            binding.edtCityEvent.setText(address.localidade)
+                            binding.edtStateEvent.setText(address.uf)
+                        } else {
+                            Toast.makeText(this@RegisterEventActivity, "Endereço inválido", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     Toast.makeText(this@RegisterEventActivity, "Erro ao obter dados do CEP", Toast.LENGTH_SHORT).show()
@@ -145,6 +170,7 @@ class RegisterEventActivity : AppCompatActivity() {
                 Toast.makeText(this@RegisterEventActivity, "Falha ao obter dados do CEP", Toast.LENGTH_SHORT).show()
             }
         })
+
     }
 
     private fun registerEvent() {
@@ -157,15 +183,36 @@ class RegisterEventActivity : AppCompatActivity() {
         val startDateTime = LocalDateTime.of(startDate, startTime)
         val endDateTime = startDateTime.plusHours(2) // Adiciona uma duração fixa de 2 horas
 
+        val cep = binding.edtCepEvent.text.toString()
+        val nameEvent = binding.edtEventTitle.text.toString()
+        val description = binding.edtDescriptionEvent.text.toString()
+        val addressEvent = binding.edtAddressEvent.text.toString()
+        val city = binding.edtCityEvent.text.toString()
+        val state = binding.edtStateEvent.text.toString()
+
+        val address = "${addressEvent}, ${city}, ${state}"
+        val latLng = getLatLngFromAddress(address)
+        val latitude: Double
+        val longitude: Double
+        if (latLng != null) {
+            latitude = latLng.latitude
+            longitude = latLng.longitude
+        } else {
+            Toast.makeText(this@RegisterEventActivity, "Endereço inválido", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val event = EventRegister(
-            cep = binding.edtCepEvent.text.toString(),
-            nameEvent = binding.edtEventTitle.text.toString(),
-            description = binding.edtDescriptionEvent.text.toString(),
-            addressEvent = binding.edtAddressEvent.text.toString(),
-            city = binding.edtCityEvent.text.toString(),
-            state = binding.edtStateEvent.text.toString(),
-            startData = startDateTime.toString(), // Altere para a representação em String
-            endData = endDateTime.toString() // Altere para a representação em String
+            cep = cep,
+            nameEvent = nameEvent,
+            description = description,
+            addressEvent = addressEvent,
+            city = city,
+            state = state,
+            startData = startDateTime.toString(),
+            endData = endDateTime.toString(),
+            latitude = latitude.toString(),
+            longitude = longitude.toString()
         )
 
         val service = Api.createService(RetrofitService::class.java)
@@ -188,4 +235,5 @@ class RegisterEventActivity : AppCompatActivity() {
             }
         })
     }
+
 }
