@@ -31,7 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater)
-        initRecyclerView() // <- movido para cá
+        initRecyclerView()
         addDataSource()
         initRecyclerViewCategory()
         addDataSourceCategory()
@@ -63,7 +63,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initRecyclerViewCategory() {
         this.categoryAdapter = CategoryAdapter()
         val gridLayoutManager = GridLayoutManager(requireContext(), 1
-        ) // Defina o número de colunas desejado
+        )
         binding.recyclerviewCategory.layoutManager = gridLayoutManager
         binding.recyclerviewCategory.adapter = this.categoryAdapter
 
