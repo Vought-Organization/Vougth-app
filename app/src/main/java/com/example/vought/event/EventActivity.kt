@@ -26,7 +26,7 @@ class EventActivity : AppCompatActivity() {
 
 
     private val PAYPAL_REQUEST_CODE = 123
-    private val PAYPAL_CLIENT_ID = "AbAwh0COIoZEDaUaIT6hpeIk9qY--dEJA_6OHcdN4jLk-d2UFRTbCEI1d1atDnFD-rvlFOVflc6Yt4vT"
+    private val PAYPAL_CLIENT_ID = "AekNogbZqfLM-DVzxKhkfHXAsC2UoZ90cdqCRBUpfyLBO8bcOmgZeX6hZ8Uvxxcs03H9Ejyyin65DFiD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
