@@ -4,7 +4,7 @@ import java.math.BigDecimal
 
 data class Ticket(
     val idTicket: Int,
-    val priceTicket: BigDecimal,
+    val priceTicket: Double,
     val codeTicket: String,
     val eventIdEvent: Int
 )

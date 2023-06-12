@@ -8,40 +8,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.example.vought.databinding.FragmentEventBinding
+import com.example.vought.databinding.ActivityEventBinding
 import com.example.vought.model.Event
-import com.example.vought.model.Ticket
+import com.example.vought.model.TicketEventData
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
-import com.paypal.android.sdk.payments.PayPalConfiguration
-import com.paypal.android.sdk.payments.PayPalPayment
-import com.paypal.android.sdk.payments.PayPalService
-import com.paypal.android.sdk.payments.PaymentActivity
-import com.paypal.android.sdk.payments.PaymentConfirmation
+import com.paypal.android.sdk.payments.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.BigDecimal
 
 class EventActivity : AppCompatActivity() {
-    private lateinit var binding: FragmentEventBinding
+    private lateinit var binding: ActivityEventBinding
     private lateinit var sharedPreferences: SharedPreferences
-    private var eventId: String? = null
+    private var eventId: Int? = null
 
 
     private val PAYPAL_REQUEST_CODE = 123
-    private val PAYPAL_CLIENT_ID = "AWRIeDw7cMVVsXnj3f2fl2No6LMqdpZHSCwrgJU-RBTNL0WHPfEiemfR78lIHeElEaDAe1S1syoet4uS"
+    private val PAYPAL_CLIENT_ID = "AbAwh0COIoZEDaUaIT6hpeIk9qY--dEJA_6OHcdN4jLk-d2UFRTbCEI1d1atDnFD-rvlFOVflc6Yt4vT"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentEventBinding.inflate(layoutInflater)
+        binding = ActivityEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         sharedPreferences = getSharedPreferences("eventId", Context.MODE_PRIVATE)
 
-        val idTeste = intent.getIntExtra("eventId", 1)
-
-
-        val eventIdFromSharedPreferences = sharedPreferences.getString("eventId", null)
+        eventId = intent.getIntExtra("eventId", 0)
 
         val service = Api.createService(RetrofitService::class.java)
         val getEventRequest = service.getEvent()
@@ -51,12 +45,12 @@ class EventActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val events = response.body()
                     if (!events.isNullOrEmpty()) {
-                        val event = events.find { it.idEvent == idTeste }
+                        val event = events.find { it.idEvent == eventId }
                         if (event != null) {
                             updateEventDetails(event)
                             setupPayPalButton(event)
                         } else {
-                            Log.d("MyEventActivity", "ID do evento $idTeste")
+                            Log.d("MyEventActivity", "ID do evento $eventId")
                             showToast("Evento não encontrado")
                         }
                     } else {
@@ -83,57 +77,55 @@ class EventActivity : AppCompatActivity() {
 
     private fun setupPayPalButton(event: Event) {
         val paypalConfig = PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Defina o ambiente do PayPal (sandbox ou produção)
-            .clientId(PAYPAL_CLIENT_ID) // Defina o Client ID do PayPal
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId(PAYPAL_CLIENT_ID)
 
         val payPalButton = binding.btnPaypal
-        val idTeste = intent.getIntExtra("eventId", 1)
 
         payPalButton.setOnClickListener {
-
             val service = Api.createService(RetrofitService::class.java)
 
-            idTeste?.let { it1 -> service.getTickets(it1) }
-                ?.enqueue(object : Callback<List<Ticket>> {
-                    override fun onResponse(
-                        call: Call<List<Ticket>>,
-                        response: Response<List<Ticket>>
-                    ) {
-                        if (response.isSuccessful) {
-                            val tickets = response.body()
-                            if (!tickets.isNullOrEmpty()) {
-                                val selectedTicket = tickets.firstOrNull()
-                                if (selectedTicket != null) {
-                                    performPayment(event, selectedTicket)
-                                } else {
-                                    showToast("Ingresso não encontrado")
-                                }
+            service.getTickets().enqueue(object : Callback<List<TicketEventData>> {
+                override fun onResponse(call: Call<List<TicketEventData>>, response: Response<List<TicketEventData>>) {
+                    if (response.isSuccessful) {
+                        val tickets = response.body()
+                        Log.d("TICKETS", "$tickets")
+                        if (!tickets.isNullOrEmpty()) {
+                            val selectedTicket = tickets.find { it.event?.idEvent == event.idEvent }
+                            if (selectedTicket != null) {
+                                performPayment(event, selectedTicket)
                             } else {
-                                showToast("Não há ingressos disponíveis.")
+                                Log.d("SELECT TICKET", "$selectedTicket")
+                                showToast("Ingresso não encontrado")
                             }
                         } else {
-                            showToast("Erro ao obter ingressos.")
+                            showToast("Não há ingressos disponíveis.")
                         }
+                    } else {
+                        showToast("Erro ao obter ingressos.")
                     }
+                }
 
-                    override fun onFailure(call: Call<List<Ticket>>, t: Throwable) {
-                        showToast("Ocorreu um erro inesperado ao obter ingressos.")
-                    }
-                })
+                override fun onFailure(call: Call<List<TicketEventData>>, t: Throwable) {
+                    showToast("Ocorreu um erro inesperado ao obter ingressos.")
+                }
+            })
         }
     }
 
-    private fun performPayment(event: Event, ticket: Ticket) {
+    private fun performPayment(event: Event, ticket: TicketEventData?) {
+        Log.d("OBJETO TICKET:", ticket.toString())
+
         val paypalPayment = PayPalPayment(
-            ticket.priceTicket,
+            ticket?.precoIngresso?.let { BigDecimal.valueOf(it.toDouble()) },
             "BRL",
-            event.nameEvent,
+            event.nameEvent ?: "",
             PayPalPayment.PAYMENT_INTENT_SALE
         )
 
         val paypalConfig = PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Defina o ambiente do PayPal (sandbox ou produção)
-            .clientId(PAYPAL_CLIENT_ID) // Defina o Client ID do PayPal
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId(PAYPAL_CLIENT_ID)
 
         val intent = Intent(this, PaymentActivity::class.java)
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig)
@@ -166,8 +158,8 @@ class EventActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val paypalConfig = PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // Defina o ambiente do PayPal (sandbox ou produção)
-            .clientId(PAYPAL_CLIENT_ID) // Defina o Client ID do PayPal
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId(PAYPAL_CLIENT_ID)
 
         val intent = Intent(this, PayPalService::class.java)
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig)

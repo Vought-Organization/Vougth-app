@@ -3,6 +3,7 @@ package com.example.vought.rest
 import com.example.vought.model.Event
 import com.example.vought.model.EventRegister
 import com.example.vought.model.Ticket
+import com.example.vought.model.TicketEventData
 import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
 
@@ -59,7 +60,10 @@ interface RetrofitService {
     @GET("{cep}/json")
     fun getAddress(@Path("cep") cep: String): Call<EventRegister>
 
+    @GET("v1/ticket-events/events/{eventId}")
+    fun getTicketByEventId(@Path("eventId") eventId: Int): Call<Ticket>
 
-    @GET("v1/ticket-events/events/{id}")
-    fun getTickets(@Path("id") id: Int): Call<List<Ticket>>
+    @GET("v1/tickets")
+    fun getTickets(): Call<List<TicketEventData>>
+
 }

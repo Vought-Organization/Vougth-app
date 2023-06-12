@@ -1,5 +1,6 @@
 package com.example.vought.category.adapter
 
+import com.example.vought.event.EventActivity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -11,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
-import com.example.vought.event.EventActivity
+
 
 import com.example.vought.model.Event
 import kotlinx.android.synthetic.main.fragment_category.view.*
