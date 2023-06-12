@@ -6,6 +6,7 @@ data class EventRegister(
     val cep: String,
     val nameEvent: String,
     val description: String,
+    val category: String,
     val latitude: String,
     val longitude: String,
     val addressEvent: String,

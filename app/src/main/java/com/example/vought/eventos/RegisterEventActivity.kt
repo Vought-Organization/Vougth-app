@@ -69,8 +69,47 @@ class RegisterEventActivity : AppCompatActivity() {
         }
         btnTimePicker.setOnClickListener(this::onClick)
 
+        spinnerCategory = findViewById(R.id.spinner_category_event)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCategory.adapter = adapter
+
+        spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedCategory = categories[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Faz nada
+            }
+        }
+
+        val textColor = Color.BLACK
+        val spinnerAdapter = spinnerCategory.adapter
+        if (spinnerAdapter != null && spinnerAdapter is ArrayAdapter<*>) {
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerCategory.adapter = object : ArrayAdapter<String>(
+                applicationContext,
+                android.R.layout.simple_spinner_item,
+                categories
+            ) {
+                override fun getView(position: Int, convertView: View?, parent: android.view.ViewGroup): View {
+                    val view = super.getView(position, convertView, parent)
+                    view?.let {
+                        if (it is android.widget.TextView) {
+                            it.setTextColor(textColor)
+                        }
+                    }
+                    return view
+                }
+            }
+        }
+
+        selectedCategory = categories[0]
+
     }
-    private fun onClickDate(){
+
+    private fun onClickDate() {
         val c = Calendar.getInstance()
         mYear = c.get(Calendar.YEAR)
         mMonth = c.get(Calendar.MONTH)
@@ -184,7 +223,7 @@ class RegisterEventActivity : AppCompatActivity() {
         val timeDuration: EditText = binding.inTimeDuration
         val duration: Double = timeDuration.text.toString().toDouble()
         val endDateTime = startDateTime.plusHours(duration.toInt().toLong())
-
+        val category = selectedCategory
         val cep = binding.edtCepEvent.text.toString()
         val nameEvent = binding.edtEventTitle.text.toString()
         val description = binding.edtDescriptionEvent.text.toString()
@@ -208,6 +247,7 @@ class RegisterEventActivity : AppCompatActivity() {
             cep = cep,
             nameEvent = nameEvent,
             description = description,
+            category = category,
             addressEvent = addressEvent,
             city = city,
             state = state,
