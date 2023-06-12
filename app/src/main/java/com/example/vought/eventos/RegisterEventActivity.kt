@@ -181,7 +181,9 @@ class RegisterEventActivity : AppCompatActivity() {
         val startTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"))
 
         val startDateTime = LocalDateTime.of(startDate, startTime)
-        val endDateTime = startDateTime.plusHours(2) // Adiciona uma duração fixa de 2 horas
+        val timeDuration: EditText = binding.inTimeDuration
+        val duration: Double = timeDuration.text.toString().toDouble()
+        val endDateTime = startDateTime.plusHours(duration.toInt().toLong())
 
         val cep = binding.edtCepEvent.text.toString()
         val nameEvent = binding.edtEventTitle.text.toString()
