@@ -45,10 +45,10 @@ interface RetrofitService {
     @GET("v1/events/find-category?category=teatro")
     fun getEventTeatros() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=passeios")
+    @GET("v1/events/find-category?category=passeio")
     fun getEventPasseios() : Call<List<Event>>
 
-    @GET("v1/events/find-category?category=congressos")
+    @GET("v1/events/find-category?category=congresso")
     fun getEventCongressos() : Call<List<Event>>
 
     @GET("v1/events/find-category?category=infantil")

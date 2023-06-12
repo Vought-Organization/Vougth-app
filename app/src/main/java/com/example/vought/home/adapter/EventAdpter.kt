@@ -15,8 +15,8 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             "show" to R.drawable.festas,
             "palestra" to R.drawable.congresso,
             "teatro" to R.drawable.teatro,
-            "passeios" to R.drawable.brincadeira,
-            "congressos" to R.drawable.computador,
+            "passeio" to R.drawable.brincadeira,
+            "congresso" to R.drawable.computador,
             "infantil" to R.drawable.brincadeira,
             "standup" to R.drawable.standup
         )

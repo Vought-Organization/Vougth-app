@@ -20,8 +20,8 @@ class CategoryAdapter (val context: Context, val listaEvento: List<Event>): Recy
         "show" to "festas",
         "palestra" to "congresso",
         "teatro" to "teatro",
-        "passeios" to "brincadeira",
-        "congressos" to "computador",
+        "passeio" to "brincadeira",
+        "congresso" to "computador",
         "infantil" to "brincadeira",
         "standup" to "standup"
     )

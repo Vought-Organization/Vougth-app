@@ -18,17 +18,21 @@
         android:textColor="@color/black"
         android:textColorHint="@color/gray_text" />
 
-    <EditText
-        android:id="@+id/edt_category_event"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_view_category_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:text="Categoria:"
+        android:textSize="16sp"
+        android:textColor="@color/gray_text"
+        android:padding="8dp" />
+
+    <Spinner
+        android:id="@+id/spinner_category_event"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="Categoria do evento"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_text" />
+        />
 
     <EditText
         android:id="@+id/edt_description_event"
