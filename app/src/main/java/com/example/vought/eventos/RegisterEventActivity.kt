@@ -2,17 +2,22 @@ package com.example.vought.eventos
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.graphics.Color
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.vought.R
 import com.example.vought.databinding.ActivityRegisterEventBinding
 import com.example.vought.model.Address
 import com.example.vought.model.EventRegister
@@ -42,6 +47,9 @@ class RegisterEventActivity : AppCompatActivity() {
     private var mHour: Int = 0
     private var mMinute: Int = 0
     private lateinit var viaCepService: RetrofitService
+    private lateinit var spinnerCategory: Spinner
+    private val categories = arrayOf("Selecione uma categoria","show", "palestra", "teatro", "passeio", "congresso", "infantil", "standup")
+    private lateinit var selectedCategory: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
