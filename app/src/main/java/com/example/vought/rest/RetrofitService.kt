@@ -9,10 +9,7 @@ import com.example.vought.model.TicketEventData
 import com.example.vought.model.TicketRegisterData
 import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
-import okhttp3.ResponseBody
-
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface RetrofitService {
@@ -69,11 +66,10 @@ interface RetrofitService {
     fun getEventStandup() : Call<List<Event>>
 
     @GET("{cep}/json")
-    fun getAddress(@Path("cep") cep: String): Call<EventRegister>
+    fun getAddress(@Path("cep") cep: String): Call<Address>
 
     @GET("v1/ticket-events/events/{eventId}")
     fun getTicketByEventId(@Path("eventId") eventId: Int): Call<Ticket>
-    fun getAddress(@Path("cep") cep: String): Call<Address>
 
     @GET("v1/tickets")
     fun getTickets(): Call<List<TicketEventData>>

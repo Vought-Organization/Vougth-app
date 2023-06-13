@@ -24,14 +24,12 @@
             android:name=".event.EventActivity"
             android:enableOnBackInvokedCallback="true"
             android:exported="false" />
-        android:usesCleartextTraffic="true" >
         <activity
             android:name=".eventos.TicketActivity"
             android:exported="false"
             android:label="Cadastrar Ingresso"/>
         <activity
             android:name=".lgpd.LGPDActivity"
-            android:exported="true">
             android:exported="true"
             android:label="LGPD">
             <intent-filter>
@@ -84,7 +82,6 @@
         <activity
             android:name=".home.HomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_home" />
             android:label="@string/title_activity_home" />
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
