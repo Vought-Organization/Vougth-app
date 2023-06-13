@@ -3,6 +3,7 @@ package com.example.vought.eventos
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.graphics.Color
+import android.content.Intent
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.vought.R
 import com.example.vought.databinding.ActivityRegisterEventBinding
 import com.example.vought.model.Address
+import com.example.vought.model.Event
 import com.example.vought.model.EventRegister
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
@@ -268,22 +270,49 @@ class RegisterEventActivity : AppCompatActivity() {
         val service = Api.createService(RetrofitService::class.java)
         val request = service.saveEvent(event)
 
-        request.enqueue(object : Callback<EventRegister> {
-            @RequiresApi(Build.VERSION_CODES.N)
-            override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@RegisterEventActivity, "Evento cadastrado", Toast.LENGTH_SHORT).show()
+//        request.enqueue(object : Callback<EventRegister> {
+//            @RequiresApi(Build.VERSION_CODES.N)
+//            override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
+//                if (response.isSuccessful) {
+//                    Toast.makeText(this@RegisterEventActivity, "Evento cadastrado", Toast.LENGTH_SHORT).show()
+//
+//                    val createdEvent = response.body()?.event
+//                    val eventName = createdEvent?.nameEvent
+//
+//                    // Aqui você deve fazer uma chamada à API para obter o evento pelo nome
+//                    // Supondo que haja um método chamado getEventByName na sua classe de serviço
+//
+//                    val requestTicket = service.getEvent(eventName)
+//                    requestTicket.enqueue(object : Callback<Event> {
+//                        override fun onResponse(call: Call<Event>, response: Response<Event>) {
+//                            if (response.isSuccessful) {
+//                                val event = response.body()
+//                                val idEvent = event?.idEvent ?: -1 // Obtém o ID do evento encontrado
+//
+//                                val intent = Intent(this@RegisterEventActivity, TicketActivity::class.java)
+//                                intent.putExtra("idEvent", idEvent)
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                                startActivity(intent)
+//                            } else {
+//                                Toast.makeText(this@RegisterEventActivity, "Erro ao obter o ID do evento", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//
+//                        override fun onFailure(call: Call<Event>, t: Throwable) {
+//                            Toast.makeText(this@RegisterEventActivity, "Falha ao obter o ID do evento", Toast.LENGTH_SHORT).show()
+//                        }
+//                    })
+//
+//                } else {
+//                    Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<EventRegister>, t: Throwable) {
+//                Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
+//            }
+//        })
 
-                    // Trate o evento cadastrado (savedEvent) aqui
-                } else {
-                    Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<EventRegister>, t: Throwable) {
-                Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
 }

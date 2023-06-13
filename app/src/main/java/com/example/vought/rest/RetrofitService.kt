@@ -5,6 +5,7 @@ import com.example.vought.model.Event
 import com.example.vought.model.EventDataUpdate
 import com.example.vought.model.EventRegister
 import com.example.vought.model.Ticket
+import com.example.vought.model.TicketRegisterData
 import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
 
@@ -69,4 +70,7 @@ interface RetrofitService {
 
     @GET("events/{id}")
     fun getTickets(@Path("id") id: Int): Call<List<Ticket>>
+
+    @POST("events/{id}")
+    fun postTicket(@Body ticket: TicketRegisterData) : Call<TicketRegisterData>
 }
