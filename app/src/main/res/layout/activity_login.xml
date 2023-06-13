@@ -44,6 +44,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_edit_email"
                     style="@style/Theme.Vought.FormEditText"
+                    android:layout_height="match_parent"
                     android:autofillHints="@null"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="10dp"
@@ -87,28 +88,27 @@
                     android:layout_gravity="center"
                     android:background="@color/secundary_color_vought" />
             </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintBottom_toTopOf="@id/login_txt_register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/login_txt_register"
+                style="@style/Theme.Vought.TextViewBase"
+                android:layout_width="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:padding="24dp"
+                android:text="@string/does_not_have_account"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
 
     </ScrollView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@id/login_txt_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/login_txt_register"
-        style="@style/Theme.Vought.TextViewBase"
-        android:layout_width="match_parent"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:padding="24dp"
-        android:text="@string/does_not_have_account"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
