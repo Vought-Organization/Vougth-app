@@ -5,10 +5,13 @@ import com.example.vought.model.Event
 import com.example.vought.model.EventDataUpdate
 import com.example.vought.model.EventRegister
 import com.example.vought.model.Ticket
+import com.example.vought.model.TicketRegisterData
 import com.example.vought.model.UserData
 import com.example.vought.model.UserDataUpdate
+import okhttp3.ResponseBody
 
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface RetrofitService {
@@ -69,4 +72,7 @@ interface RetrofitService {
 
     @GET("events/{id}")
     fun getTickets(@Path("id") id: Int): Call<List<Ticket>>
+
+    @POST("v1/ticket-events")
+    fun postTicket(@Body ticketRegisterData: TicketRegisterData): Call<TicketRegisterData>
 }

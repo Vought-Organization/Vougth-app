@@ -3,6 +3,7 @@ package com.example.vought.eventos
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.graphics.Color
+import android.content.Intent
 import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.vought.R
 import com.example.vought.databinding.ActivityRegisterEventBinding
 import com.example.vought.model.Address
+import com.example.vought.model.Event
 import com.example.vought.model.EventRegister
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
@@ -267,14 +269,39 @@ class RegisterEventActivity : AppCompatActivity() {
 
         val service = Api.createService(RetrofitService::class.java)
         val request = service.saveEvent(event)
+        val request2 = service.getEvent()
 
         request.enqueue(object : Callback<EventRegister> {
-            @RequiresApi(Build.VERSION_CODES.N)
             override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@RegisterEventActivity, "Evento cadastrado", Toast.LENGTH_SHORT).show()
+                   Toast.makeText(this@RegisterEventActivity, "Evento cadastrado: ", Toast.LENGTH_SHORT).show()
 
-                    // Trate o evento cadastrado (savedEvent) aqui
+                    request2.enqueue(object : Callback<List<Event>> {
+                        override fun onResponse(
+                            call: Call<List<Event>>,
+                            response: Response<List<Event>>
+                        ) {
+                            if (response.isSuccessful) {
+                                val eventlist = response.body()
+                                if (eventlist != null && eventlist.isNotEmpty()) {
+                                    val mostRecentEvent = eventlist.last().idEvent
+                                    if (mostRecentEvent != null) {
+                                        val eventId = mostRecentEvent
+
+                                        val intent = Intent(this@RegisterEventActivity, TicketActivity::class.java)
+                                        intent.putExtra("eventId", eventId)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Event>>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
                 } else {
                     Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
                 }
@@ -284,6 +311,7 @@ class RegisterEventActivity : AppCompatActivity() {
                 Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
             }
         })
+
     }
 
 }
