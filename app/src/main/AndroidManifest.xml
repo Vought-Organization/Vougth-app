@@ -21,14 +21,12 @@
         android:usesCleartextTraffic="true" >
         <activity
             android:name=".eventos.TicketActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Cadastrar Ingresso"/>
         <activity
             android:name=".lgpd.LGPDActivity"
-<<<<<<< Updated upstream
-            android:exported="true" >
-=======
-            android:exported="true">
->>>>>>> Stashed changes
+            android:exported="true"
+            android:label="LGPD">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,16 +54,12 @@
 
         <activity
             android:name=".eventos.RegisterEventActivity"
-            android:exported="false" />
-        <activity
-<<<<<<< Updated upstream
-            android:name=".edit.EditActivity"
-            android:exported="false" />
-=======
-            android:name=".myevents.MyEventsActivity"
             android:exported="false"
-            android:label="Seus eventos criados" />
->>>>>>> Stashed changes
+            android:label="Cadastrar Evento"/>
+        <activity
+            android:name=".edit.EditActivity"
+            android:exported="false"
+            android:label="Editar evento"/>
         <activity
             android:name=".myevents.MyEventsActivity"
             android:exported="false"
@@ -73,11 +67,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
-<<<<<<< Updated upstream
-            android:label="@string/title_activity_login" />
-=======
             android:label="@string/title_activity_login"></activity>
->>>>>>> Stashed changes
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true" />

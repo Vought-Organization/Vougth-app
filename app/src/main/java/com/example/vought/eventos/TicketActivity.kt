@@ -11,50 +11,56 @@ import com.example.vought.databinding.ActivityTicketBinding
 import com.example.vought.home.HomeActivity
 import com.example.vought.model.Event
 import com.example.vought.model.EventRegister
+import com.example.vought.model.Ticket
 import com.example.vought.model.TicketRegisterData
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class TicketActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTicketBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ticket)
-        
-        binding.btnSalveEvent.setOnClickListener{
+        binding = ActivityTicketBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnSalveEvent.setOnClickListener {
             registerTicket()
         }
     }
 
     private fun registerTicket() {
         val valorTicket: Double = binding.edtValue.text.toString().toDouble()
+
         val idEventIntent = intent.getIntExtra("eventId", 0)
-        val ticket = TicketRegisterData(
-            idEvent = idEventIntent,
-            precoIngresso = valorTicket
-        )
+
+        val evento = TicketRegisterData.Evento(idEventIntent)
+
+        val ticket = TicketRegisterData(valorTicket, evento)
+
         val service = Api.createService(RetrofitService::class.java)
+
         val request = service.postTicket(ticket)
 
         request.enqueue(object : Callback<TicketRegisterData> {
-            @RequiresApi(Build.VERSION_CODES.N)
             override fun onResponse(
                 call: Call<TicketRegisterData>,
                 response: Response<TicketRegisterData>
             ) {
-                if (response.isSuccessful) {
-                    Toast.makeText(applicationContext, "Ingresso Cadastrado", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@TicketActivity, HomeActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-            override fun onFailure(call: Call<TicketRegisterData>, t: Throwable) {
-                Toast.makeText(applicationContext, "API não encontrada", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
+                Toast.makeText(this@TicketActivity, "Ingresso cadastrado com sucesso! $idEventIntent", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@TicketActivity, HomeActivity::class.java)
+                startActivity(intent)
 
+            }
+
+            override fun onFailure(call: Call<TicketRegisterData>, t: Throwable) {
+                Toast.makeText(this@TicketActivity, "Deu Errado", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+    }
 }

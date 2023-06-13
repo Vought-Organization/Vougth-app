@@ -269,49 +269,48 @@ class RegisterEventActivity : AppCompatActivity() {
 
         val service = Api.createService(RetrofitService::class.java)
         val request = service.saveEvent(event)
+        val request2 = service.getEvent()
 
-//        request.enqueue(object : Callback<EventRegister> {
-//            @RequiresApi(Build.VERSION_CODES.N)
-//            override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
-//                if (response.isSuccessful) {
-//                    Toast.makeText(this@RegisterEventActivity, "Evento cadastrado", Toast.LENGTH_SHORT).show()
-//
-//                    val createdEvent = response.body()?.event
-//                    val eventName = createdEvent?.nameEvent
-//
-//                    // Aqui você deve fazer uma chamada à API para obter o evento pelo nome
-//                    // Supondo que haja um método chamado getEventByName na sua classe de serviço
-//
-//                    val requestTicket = service.getEvent(eventName)
-//                    requestTicket.enqueue(object : Callback<Event> {
-//                        override fun onResponse(call: Call<Event>, response: Response<Event>) {
-//                            if (response.isSuccessful) {
-//                                val event = response.body()
-//                                val idEvent = event?.idEvent ?: -1 // Obtém o ID do evento encontrado
-//
-//                                val intent = Intent(this@RegisterEventActivity, TicketActivity::class.java)
-//                                intent.putExtra("idEvent", idEvent)
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                                startActivity(intent)
-//                            } else {
-//                                Toast.makeText(this@RegisterEventActivity, "Erro ao obter o ID do evento", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//
-//                        override fun onFailure(call: Call<Event>, t: Throwable) {
-//                            Toast.makeText(this@RegisterEventActivity, "Falha ao obter o ID do evento", Toast.LENGTH_SHORT).show()
-//                        }
-//                    })
-//
-//                } else {
-//                    Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<EventRegister>, t: Throwable) {
-//                Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
-//            }
-//        })
+        request.enqueue(object : Callback<EventRegister> {
+            override fun onResponse(call: Call<EventRegister>, response: Response<EventRegister>) {
+                if (response.isSuccessful) {
+                   Toast.makeText(this@RegisterEventActivity, "Evento cadastrado: ", Toast.LENGTH_SHORT).show()
+
+                    request2.enqueue(object : Callback<List<Event>> {
+                        override fun onResponse(
+                            call: Call<List<Event>>,
+                            response: Response<List<Event>>
+                        ) {
+                            if (response.isSuccessful) {
+                                val eventlist = response.body()
+                                if (eventlist != null && eventlist.isNotEmpty()) {
+                                    val mostRecentEvent = eventlist.last().idEvent
+                                    if (mostRecentEvent != null) {
+                                        val eventId = mostRecentEvent
+
+                                        val intent = Intent(this@RegisterEventActivity, TicketActivity::class.java)
+                                        intent.putExtra("eventId", eventId)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                    }
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<Event>>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
+                } else {
+                    Toast.makeText(this@RegisterEventActivity, "Erro no cadastro", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<EventRegister>, t: Throwable) {
+                Toast.makeText(this@RegisterEventActivity, "API não encontrada", Toast.LENGTH_SHORT).show()
+            }
+        })
 
     }
 
