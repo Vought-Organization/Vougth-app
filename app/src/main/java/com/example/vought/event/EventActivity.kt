@@ -23,7 +23,11 @@ class EventActivity : AppCompatActivity() {
     private var eventId: Int? = null
 
     private val LOAD_PAYMENT_DATA_REQUEST_CODE = 123
-    private val id_comerciante = 123
+    // credenciais de acesso para o pagamento
+    private val user_id = 683498511
+    private val application_number = 5405315337675816
+    private val integration_gateway = "CheckoutPro"
+    private val merchantName = "Vought"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,14 +131,14 @@ class EventActivity : AppCompatActivity() {
                 "        \"type\": \"PAYMENT_GATEWAY\",\n" +
                 "        \"parameters\": {\n" +
                 "          \"gateway\": \"sua_gateway_de_pagamento\",\n" +
-                "          \"gatewayMerchantId\": \"seu_id_de_comerciante\"\n" +
+                "          \"gatewayMerchantId\": \"${application_number}\"\n" +
                 "        }\n" +
                 "      }\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"merchantInfo\": {\n" +
-                "    \"merchantId\": \"seu_id_de_comerciante\",\n" +
-                "    \"merchantName\": \"Nome do seu Comerciante\"\n" +
+                "    \"merchantId\": \"${user_id}\",\n" +
+                "    \"merchantName\": \"${merchantName}\"\n" +
                 "  },\n" +
                 "  \"transactionInfo\": {\n" +
                 "    \"totalPriceStatus\": \"FINAL\",\n" +
