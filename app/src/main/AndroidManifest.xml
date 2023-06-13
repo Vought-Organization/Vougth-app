@@ -31,7 +31,7 @@
         <activity
             android:name=".lgpd.LGPDActivity"
             android:exported="true"
-            android:label="LGPD">
+            android:label="Vought">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
