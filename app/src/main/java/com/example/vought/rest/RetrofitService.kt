@@ -2,6 +2,7 @@ package com.example.vought.rest
 
 import com.example.vought.model.Address
 import com.example.vought.model.Event
+import com.example.vought.model.EventDataUpdate
 import com.example.vought.model.EventRegister
 import com.example.vought.model.Ticket
 import com.example.vought.model.UserData
@@ -20,6 +21,12 @@ interface RetrofitService {
 
     @PUT("v1/users/{id}")
     fun updateUserById(@Path("id") id: String, @Body userData: UserDataUpdate): Call<UserData>
+
+    @PUT("v1/events/{id}")
+    fun updateEventById(@Path("id") id: Int, @Body eventData: EventDataUpdate): Call<Event>
+
+    @GET("v1/events/{id}")
+    fun getEventById(@Path("id") id: Int) : Call<Event>
 
     @DELETE("v1/events/{id}")
     fun deleteEvent(@Path("id") id: Int): Call<Void>
@@ -59,7 +66,6 @@ interface RetrofitService {
 
     @GET("{cep}/json")
     fun getAddress(@Path("cep") cep: String): Call<Address>
-
 
     @GET("events/{id}")
     fun getTickets(@Path("id") id: Int): Call<List<Ticket>>

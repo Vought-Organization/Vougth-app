@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -18,11 +18,10 @@
         android:roundIcon="@mipmap/ic_logo_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vought"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
         <activity
             android:name=".lgpd.LGPDActivity"
-            android:exported="true"
-            >
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +30,8 @@
         </activity>
         <activity
             android:name=".category.CategoryActivity"
-            android:label="Eventos"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Eventos" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -52,14 +51,16 @@
             android:name=".eventos.RegisterEventActivity"
             android:exported="false" />
         <activity
-            android:name=".myevents.MyEventsActivity"
-            android:label="Seus eventos criados"
+            android:name=".edit.EditActivity"
             android:exported="false" />
+        <activity
+            android:name=".myevents.MyEventsActivity"
+            android:exported="false"
+            android:label="Seus eventos criados" />
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true" />
@@ -69,7 +70,7 @@
         <activity
             android:name=".home.HomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home" />
     </application>
 
 </manifest>
