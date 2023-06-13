@@ -48,5 +48,14 @@
             android:text="Autor da Live"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/txt_date_event"
+            android:layout_width="match_parent"
+            android:textColor="#0C0C0C"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Autor da Live"
+            android:textSize="15sp" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -24,9 +24,16 @@
             android:name=".event.EventActivity"
             android:enableOnBackInvokedCallback="true"
             android:exported="false" />
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".eventos.TicketActivity"
+            android:exported="false"
+            android:label="Cadastrar Ingresso"/>
         <activity
             android:name=".lgpd.LGPDActivity"
             android:exported="true">
+            android:exported="true"
+            android:label="LGPD">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +61,12 @@
 
         <activity
             android:name=".eventos.RegisterEventActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Cadastrar Evento"/>
+        <activity
+            android:name=".edit.EditActivity"
+            android:exported="false"
+            android:label="Editar evento"/>
         <activity
             android:name=".myevents.MyEventsActivity"
             android:exported="false"
@@ -72,6 +84,7 @@
         <activity
             android:name=".home.HomeActivity"
             android:exported="true"
+            android:label="@string/title_activity_home" />
             android:label="@string/title_activity_home" />
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"

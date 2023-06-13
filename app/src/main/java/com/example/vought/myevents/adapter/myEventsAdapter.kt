@@ -1,6 +1,7 @@
 package com.example.vought.myevents.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vought.R
+import com.example.vought.edit.EditActivity
 import com.example.vought.model.Event
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
@@ -26,11 +28,13 @@ class myEventsAdapter (val context: Context, val listaEvento: MutableList<Event>
         var idEvent: TextView
         var nameEvent: TextView
         var deleteImg: ImageView
+        var editImg: ImageView
 
         init {
             idEvent = itemView.idEvent
             nameEvent = itemView.nameEvent
             deleteImg = itemView.DeletarEvento
+            editImg = itemView.EditarEvento
 
             deleteImg.setOnClickListener {
                 val position = adapterPosition
@@ -39,6 +43,8 @@ class myEventsAdapter (val context: Context, val listaEvento: MutableList<Event>
                     adapter.deleteEvent(position)
                 }
             }
+
+
         }
 
         private fun getParentAdapter(): RecyclerView.Adapter<*>? {
@@ -88,8 +94,19 @@ class myEventsAdapter (val context: Context, val listaEvento: MutableList<Event>
 
 
     override fun onBindViewHolder(holder: myEventsAdapter.ViewHolder, position: Int) {
-        holder.idEvent.text = listaEvento[position].idEvent.toString()
         holder.nameEvent.text = listaEvento[position].nameEvent
+
+        holder.editImg.setOnClickListener {
+            val position = holder.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val event = listaEvento[position].idEvent
+
+                val intent = Intent(context, EditActivity::class.java)
+                intent.putExtra("eventId", event)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(intent)
+            }
+        }
     }
 
     override fun getItemCount(): Int {

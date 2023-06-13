@@ -50,25 +50,25 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/edt_cep_event"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="CEP"
-        android:textColor="@color/black"
-        android:inputType="number"
-        android:textColorHint="@color/gray_text" />
-    <Button
-        android:id="@+id/btn_cep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/color_vought_secundary"
-        android:layout_toEndOf="@+id/edt_cep_event"
-        android:layout_toRightOf="@+id/edt_cep_event"
-        android:text="SELECT CEP" />
+        <EditText
+            android:id="@+id/edt_cep_event"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/black"
+            android:ems="10"
+            android:hint="CEP"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray_text" />
+        <Button
+            android:id="@+id/btn_cep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_vought_secundary"
+            android:layout_toEndOf="@+id/edt_cep_event"
+            android:layout_toRightOf="@+id/edt_cep_event"
+            android:text="SELECT CEP" />
     </RelativeLayout>
 
 
@@ -163,19 +163,17 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:backgroundTint="@color/black"
-            android:inputType="number"
             android:hint="Duração"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_text" />
 
     </RelativeLayout>
 
-
     <com.example.vought.login.LoadingButton
         android:id="@+id/btn_salve_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        app:text="Publicar evento" />
+        app:text="Editar evento" />
 
 </LinearLayout>

@@ -15,8 +15,8 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             "show" to R.drawable.festas,
             "palestra" to R.drawable.congresso,
             "teatro" to R.drawable.teatro,
-            "passeios" to R.drawable.brincadeira,
-            "congressos" to R.drawable.computador,
+            "passeio" to R.drawable.brincadeira,
+            "congresso" to R.drawable.computador,
             "infantil" to R.drawable.brincadeira,
             "standup" to R.drawable.standup
         )
@@ -46,11 +46,13 @@ class EventAdpter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         private val eventTitle = itemView.txt_name_event
         private val eventDescription = itemView.txt_descripition_event
         private val eventImage = itemView.iv_item_event
+        private val eventDate = itemView.txt_date_event
 
 
         fun bind(event: Event){
             eventTitle.text = event.nameEvent
             eventDescription.text = event.description
+            eventDate.text = event.startData
 
             val categoria = event.category
 
