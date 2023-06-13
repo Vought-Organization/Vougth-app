@@ -64,6 +64,7 @@ class EventActivity : AppCompatActivity() {
         })
     }
 
+
     private fun updateEventDetails(event: Event) {
         val nameTextView = binding.titleEvent
         val descriptionTextView = binding.textDescription
