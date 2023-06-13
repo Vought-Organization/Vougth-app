@@ -1,7 +1,6 @@
 package com.example.vought.event
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -13,27 +12,25 @@ import com.example.vought.model.Event
 import com.example.vought.model.TicketEventData
 import com.example.vought.rest.Api
 import com.example.vought.rest.RetrofitService
-import com.paypal.android.sdk.payments.*
+import com.google.android.gms.wallet.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.math.BigDecimal
 
 class EventActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEventBinding
     private lateinit var sharedPreferences: SharedPreferences
     private var eventId: Int? = null
 
-
-    private val PAYPAL_REQUEST_CODE = 123
-    private val PAYPAL_CLIENT_ID = "AekNogbZqfLM-DVzxKhkfHXAsC2UoZ90cdqCRBUpfyLBO8bcOmgZeX6hZ8Uvxxcs03H9Ejyyin65DFiD"
+    private val LOAD_PAYMENT_DATA_REQUEST_CODE = 123
+    private val id_comerciante = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences("eventId", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("eventId", MODE_PRIVATE)
 
         eventId = intent.getIntExtra("eventId", 0)
 
@@ -48,7 +45,7 @@ class EventActivity : AppCompatActivity() {
                         val event = events.find { it.idEvent == eventId }
                         if (event != null) {
                             updateEventDetails(event)
-                            setupPayPalButton(event)
+                            setupGooglePayButton(event)
                         } else {
                             Log.d("MyEventActivity", "ID do evento $eventId")
                             showToast("Evento não encontrado")
@@ -75,14 +72,10 @@ class EventActivity : AppCompatActivity() {
         descriptionTextView.text = event.description
     }
 
-    private fun setupPayPalButton(event: Event) {
-        val paypalConfig = PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
-            .clientId(PAYPAL_CLIENT_ID)
+    private fun setupGooglePayButton(event: Event) {
+        val googlePayButton = binding.btnPaypal
 
-        val payPalButton = binding.btnPaypal
-
-        payPalButton.setOnClickListener {
+        googlePayButton.setOnClickListener {
             val service = Api.createService(RetrofitService::class.java)
 
             service.getTickets().enqueue(object : Callback<List<TicketEventData>> {
@@ -93,7 +86,7 @@ class EventActivity : AppCompatActivity() {
                         if (!tickets.isNullOrEmpty()) {
                             val selectedTicket = tickets.find { it.event?.idEvent == event.idEvent }
                             if (selectedTicket != null) {
-                                performPayment(event, selectedTicket)
+                                startGooglePayPayment(selectedTicket)
                             } else {
                                 Log.d("SELECT TICKET", "$selectedTicket")
                                 showToast("Ingresso não encontrado")
@@ -113,60 +106,96 @@ class EventActivity : AppCompatActivity() {
         }
     }
 
-    private fun performPayment(event: Event, ticket: TicketEventData?) {
-        Log.d("OBJETO TICKET:", ticket.toString())
+    private fun startGooglePayPayment(ticket: TicketEventData) {
+        val paymentDataRequestJson = "{\n" +
+                "  \"apiVersion\": 2,\n" +
+                "  \"apiVersionMinor\": 0,\n" +
+                "  \"allowedPaymentMethods\": [\n" +
+                "    {\n" +
+                "      \"type\": \"CARD\",\n" +
+                "      \"parameters\": {\n" +
+                "        \"allowedAuthMethods\": [\"PAN_ONLY\", \"CRYPTOGRAM_3DS\"],\n" +
+                "        \"allowedCardNetworks\": [\"MASTERCARD\", \"VISA\"],\n" +
+                "        \"billingAddressRequired\": true,\n" +
+                "        \"billingAddressParameters\": {\n" +
+                "          \"format\": \"FULL\",\n" +
+                "          \"phoneNumberRequired\": true\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"tokenizationSpecification\": {\n" +
+                "        \"type\": \"PAYMENT_GATEWAY\",\n" +
+                "        \"parameters\": {\n" +
+                "          \"gateway\": \"sua_gateway_de_pagamento\",\n" +
+                "          \"gatewayMerchantId\": \"seu_id_de_comerciante\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"merchantInfo\": {\n" +
+                "    \"merchantId\": \"seu_id_de_comerciante\",\n" +
+                "    \"merchantName\": \"Nome do seu Comerciante\"\n" +
+                "  },\n" +
+                "  \"transactionInfo\": {\n" +
+                "    \"totalPriceStatus\": \"FINAL\",\n" +
+                "    \"totalPrice\": \"${ticket.precoIngresso}\",\n" +
+                "    \"currencyCode\": \"BRL\"\n" +
+                "  }\n" +
+                "}"
 
-        val paypalPayment = PayPalPayment(
-            ticket?.precoIngresso?.let { BigDecimal.valueOf(it.toDouble()) },
-            "BRL",
-            event.nameEvent ?: "",
-            PayPalPayment.PAYMENT_INTENT_SALE
-        )
+        val paymentDataRequest = PaymentDataRequest.fromJson(paymentDataRequestJson)
 
-        val paypalConfig = PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
-            .clientId(PAYPAL_CLIENT_ID)
+        val paymentClient = createGooglePayClient()
 
-        val intent = Intent(this, PaymentActivity::class.java)
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig)
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, paypalPayment)
-        startActivityForResult(intent, PAYPAL_REQUEST_CODE)
+        val paymentDataRequestCode = LOAD_PAYMENT_DATA_REQUEST_CODE
+        val task = paymentClient.loadPaymentData(paymentDataRequest)
+
+        AutoResolveHelper.resolveTask(task, this@EventActivity, paymentDataRequestCode)
+    }
+
+    private fun createGooglePayClient(): PaymentsClient {
+        val walletOptions = Wallet.WalletOptions.Builder()
+            .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
+            .build()
+
+        return Wallet.getPaymentsClient(this@EventActivity, walletOptions)
+    }
+
+    private fun handlePaymentSuccess(paymentData: PaymentData) {
+        // Processar os dados do pagamento
+        showToast("Pagamento bem-sucedido! ID do pagamento: ${paymentData.paymentMethodToken.token}")
+    }
+
+    private fun handlePaymentError(exception: Int?) {
+        // Tratar o erro no pagamento
+        showToast("Erro no pagamento: {exception?.statusCode}")
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this@EventActivity, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PAYPAL_REQUEST_CODE) {
+        if (requestCode == LOAD_PAYMENT_DATA_REQUEST_CODE) {
             when (resultCode) {
                 Activity.RESULT_OK -> {
-                    val confirm = data?.getParcelableExtra<PaymentConfirmation>(PaymentActivity.EXTRA_RESULT_CONFIRMATION)
-                    if (confirm != null) {
-                        val paymentDetails = confirm.toJSONObject().toString()
-                        showToast("Pagamento confirmado")
+                    if (data != null) {
+                        val paymentData = PaymentData.getFromIntent(data)
+                        // Processar os dados do pagamento
+                        handlePaymentSuccess(paymentData)
                     }
                 }
-                Activity.RESULT_CANCELED -> showToast("Pagamento cancelado")
-                PaymentActivity.RESULT_EXTRAS_INVALID -> showToast("Dados do pagamento inválidos")
+                Activity.RESULT_CANCELED -> {
+                    // O pagamento foi cancelado pelo usuário
+                }
+                AutoResolveHelper.RESULT_ERROR -> {
+                    if (data != null) {
+                        val status = AutoResolveHelper.getStatusFromIntent(data)
+                        // Tratar o erro no pagamento
+                        handlePaymentError(status?.statusCode)
+                    }
+                }
             }
         }
-    }
-
-    override fun onDestroy() {
-        stopService(Intent(this, PayPalService::class.java))
-        super.onDestroy()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val paypalConfig = PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
-            .clientId(PAYPAL_CLIENT_ID)
-
-        val intent = Intent(this, PayPalService::class.java)
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig)
-        startService(intent)
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
