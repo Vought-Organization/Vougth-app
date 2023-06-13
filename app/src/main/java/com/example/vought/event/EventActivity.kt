@@ -26,8 +26,8 @@ class EventActivity : AppCompatActivity() {
     // credenciais de acesso para o pagamento
     private val user_id = 683498511
     private val application_number = 5405315337675816
-    private val integration_gateway = "CheckoutPro"
-    private val merchantName = "Vought"
+    private val integration_gateway = "CarteiraMercadoPago"
+    private val merchantName = "vought"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,8 +130,8 @@ class EventActivity : AppCompatActivity() {
                 "      \"tokenizationSpecification\": {\n" +
                 "        \"type\": \"PAYMENT_GATEWAY\",\n" +
                 "        \"parameters\": {\n" +
-                "          \"gateway\": \"sua_gateway_de_pagamento\",\n" +
-                "          \"gatewayMerchantId\": \"${application_number}\"\n" +
+                "          \"gateway\": \"${application_number}\",\n" +
+                "          \"gatewayMerchantId\": \"${integration_gateway}\"\n" +
                 "        }\n" +
                 "      }\n" +
                 "    }\n" +
